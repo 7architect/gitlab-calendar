@@ -20,6 +20,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
+
+router.beforeEach((to) => {
+  if (!useToken() && to.path === '/calendar')
+    return '/'
+})
+
 provideApolloClient(apolloClient)
 
 app.use(router)

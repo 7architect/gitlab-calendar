@@ -2,6 +2,7 @@ import { useQuery } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
 import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
+import { useUser } from '~/composables/user'
 
 export interface TimeLog {
   issue?: {
@@ -34,9 +35,9 @@ interface TimeLogs {
 }
 
 const QUERY = gql`
-    query logs($start: Time!, $end: Time!) {
+    query logs($start: Time!, $end: Time!, $user: String!) {
         group(fullPath: "ktteam") {
-            timelogs (startDate: $start, endDate: $end, username:"a.katkov") {
+            timelogs (startDate: $start, endDate: $end, username: $user) {
                 nodes {
                     user {
                         username,
@@ -66,8 +67,11 @@ const QUERY = gql`
 export const useLogs = (params?: { startDate?: Dayjs; endDate?: Dayjs }) => {
   const formatDate = (date: Dayjs) => date.format('YYYY-MM-DD')
 
-  return useQuery<TimeLogs, { start: string; end: string }>(QUERY, {
+  return useQuery<TimeLogs, { start: string; end: string; user: string }>(QUERY, {
     start: params?.startDate ? formatDate(params.startDate) : formatDate(dayjs().startOf('month')),
     end: params?.endDate ? formatDate(params.endDate) : formatDate(dayjs().endOf('month')),
+    user: useUser(),
+  }, {
+    fetchPolicy: 'no-cache',
   })
 }
