@@ -97,22 +97,22 @@ const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').form
 </script>
 
 <template>
-  <a-page-header :title="`Calendar for ${displayMonthLocale}`" @back="signOut" />
+  <a-page-header ghost :title="`Calendar for ${displayMonthLocale}`" @back="signOut" />
 
   <a-layout>
     <a-spin :spinning="query.loading.value">
       <a-layout-content>
         <a-card>
-          <a-statistic title="Total" :value="totalSpent" />
+          <a-statistic title="Total" :value="query.loading.value ? '—' : totalSpent" :suffix="!query.loading.value && 'h'" />
         </a-card>
 
         <a-card>
-          <a-calendar :value="displayDate" :mode="displayMode" @panel-change="onPanelChange">
+          <a-calendar :value="displayDate" :mode="displayMode" @panel-change="onPanelChange" @change="onDateChange">
             <template #monthCellRender="{ current }">
               <log-item-count :hours="hoursOf(current, { range: 'month' })" />
             </template>
             <template #dateCellRender="{ current }">
-              <perfect-scrollbar>
+              <perfect-scrollbar v-if="getLogByDay(current).length > 0">
                 <div class="mb-4! ml-3.5!">
                   <a-tag v-if="hoursOf(current, { range: 'day' }) > 8" color="orange">
                     {{ hoursOf(current, { range: 'day' }) }}h
@@ -130,6 +130,9 @@ const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').form
                   <log-item :item="log" />
                 </template>
               </perfect-scrollbar>
+              <div v-else class="text-center my-2 text-sm opacity-20">
+                —
+              </div>
             </template>
           </a-calendar>
         </a-card>

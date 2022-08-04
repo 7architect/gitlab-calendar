@@ -4,7 +4,6 @@ import routes from 'virtual:generated-pages'
 import { provideApolloClient } from '@vue/apollo-composable'
 import isBetween from 'dayjs/plugin/isBetween'
 
-import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
 import dayjs from 'dayjs'

@@ -1,16 +1,28 @@
 <script setup lang="ts">
+import { Option } from 'ant-design-vue/es/vc-util/Children/toArray'
 import { useUser } from '~/composables/user'
+import { useUsers } from '~/composables/users'
 
-const token = $ref(useToken())
-const username = $ref(useUser())
+const token = ref(useToken())
+const username = ref(useUser())
+const usersQuery = useUsers()
+const users = computed(() => usersQuery.result.value?.users.nodes.map(u => ({ value: u.username })))
+
+watch(token, () => {
+  setToken(token.value ?? '')
+  usersQuery.refetch()
+})
 
 const router = useRouter()
 const go = () => {
-  if (token && username) {
-    setToken(token)
-    setUser(username)
+  if (token.value && username.value) {
+    setUser(username.value)
     router.push('/calendar')
   }
+}
+
+const filterOption = (input: string, option: { value: string }) => {
+  return option.value.toLowerCase().includes(input.toLowerCase())
 }
 </script>
 
@@ -27,14 +39,19 @@ const go = () => {
       type="text"
       w="320px"
     />
-    <a-input
+    <a-auto-complete
+      v-if="!usersQuery.error.value && users && users.length > 0"
+      v-show="token"
       id="user"
       v-model:value="username"
+      :options="users"
       class="mt-2"
       placeholder="username"
       autofocus
       type="text"
       w="320px"
+      :filter-option="filterOption"
+      @search="usersQuery.restart"
     />
 
     <a-button
