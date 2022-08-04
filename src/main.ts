@@ -8,8 +8,10 @@ import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
 import dayjs from 'dayjs'
+import PerfectScrollbar from 'vue3-perfect-scrollbar'
 import App from './App.vue'
 import { apolloClient } from '~/apollo'
+import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 
 dayjs.extend(isBetween)
 
@@ -21,4 +23,5 @@ const router = createRouter({
 provideApolloClient(apolloClient)
 
 app.use(router)
+app.use(PerfectScrollbar)
 app.mount('#app')

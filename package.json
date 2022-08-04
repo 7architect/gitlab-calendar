@@ -19,7 +19,8 @@
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.2"
+    "vue-router": "^4.1.2",
+    "vue3-perfect-scrollbar": "^1.6.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Dayjs } from 'dayjs'
+import type { Dayjs, OpUnitType } from 'dayjs'
 import dayjs from 'dayjs'
 import { useRoute, useRouter } from 'vue-router'
 import { useLogs } from '~/composables/logs'
@@ -39,19 +39,34 @@ const getLogByDay = (date: Dayjs) => {
   })
 }
 
-const hoursOf = (date: Dayjs) => {
-  const dateStart = date.startOf('month')
-  const dateEnd = date.endOf('month')
+const hoursOf = (date: Dayjs, { range = 'month' }: { range: OpUnitType }) => {
+  const dateStart = date.startOf(range)
+  const dateEnd = date.endOf(range)
 
-  const monthLogs = data.value.filter((log) => {
+  if (range === 'day')
+    console.log(dateStart.format(), dateEnd.format())
+
+  const logs = data.value.filter((log) => {
     const logDate = dayjs(log.spentAt)
-    return logDate.isBetween(dateStart, dateEnd, 'days')
+    return logDate.isBetween(dateStart, dateEnd, 'days', '[]')
   })
 
-  return monthLogs.reduce((acc, log) => {
+  return logs.reduce((acc, log) => {
     acc += log.timeSpent
     return acc
   }, 0)
+}
+
+const onDateChange = (date: Dayjs) => {
+  router.replace({
+    path: '/calendar',
+    query: { ...route.query, date: date.format('YYYY-MM-DD') },
+  })
+
+  query.refetch({
+    start: formatDate(date.startOf('month')),
+    end: formatDate(date.endOf('month')),
+  })
 }
 
 const onPanelChange = (date: Dayjs, mode: string) => {
@@ -76,18 +91,32 @@ const onPanelChange = (date: Dayjs, mode: string) => {
 <template>
   <a-layout>
     <a-layout-content>
-      <a-spin :spinning="query.loading">
-        <a-calendar :value="displayDate" :mode="displayMode" @panelChange="onPanelChange">
+      <a-spin :spinning="query.loading.value">
+        <a-calendar :value="displayDate" :mode="displayMode" @panelChange="onPanelChange" @change="onDateChange">
           <template #monthCellRender="{ current }">
-            <log-item-count :hours="hoursOf(current)" />
+            <log-item-count :hours="hoursOf(current, { range: 'month' })" />
           </template>
           <template #dateCellRender="{ current }">
-            <template v-for="(log, i) of getLogByDay(current)" :key="i">
-              <log-item :item="log" />
-            </template>
+            <perfect-scrollbar>
+              <div class="mb-4! ml-3.5!">
+                <a-tag :color="hoursOf(current, { range: 'day' }) !== 8 ? 'red' : 'blue'">
+                  {{ hoursOf(current, { range: 'day' }) }}h
+                </a-tag>
+                <span class="text-xs underline">Всего (часов)</span>
+              </div>
+              <template v-for="(log, i) of getLogByDay(current)" :key="i">
+                <log-item :item="log" />
+              </template>
+            </perfect-scrollbar>
           </template>
         </a-calendar>
       </a-spin>
     </a-layout-content>
   </a-layout>
 </template>
+
+<style>
+.ps {
+  height: 100%;
+}
+</style>

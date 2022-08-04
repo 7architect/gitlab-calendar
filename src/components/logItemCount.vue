@@ -3,5 +3,7 @@ defineProps<{ hours: number }>()
 </script>
 
 <template>
-  <div>{{ hours }}</div>
+  <a-tag color="blue">
+    {{ hours }}h
+  </a-tag>
 </template>

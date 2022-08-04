@@ -13,7 +13,7 @@ const url = computed(() => isMr.value ? item.value.mergeRequest!.webUrl : item.v
 </script>
 
 <template>
-  <a-tooltip>
+  <a-tooltip placement="left">
     <template #title>
       <div class="font-bold">
         <a-tag v-if="isMr" color="orange">
@@ -37,7 +37,7 @@ const url = computed(() => isMr.value ? item.value.mergeRequest!.webUrl : item.v
         class="text-xs whitespace-nowrap overflow-hidden overflow-ellipsis max-w-full"
         style="text-overflow: ellipsis"
       >
-        <a-tag color="purple">{{ item.timeSpent }}h</a-tag>
+        <a-tag>{{ item.timeSpent }}h</a-tag>
 
         <a class="text-black! opacity-80!" :href="url" target="_blank">
           <span v-if="text">{{ text }}</span>
