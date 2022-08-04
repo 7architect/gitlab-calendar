@@ -97,15 +97,13 @@ const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').form
 </script>
 
 <template>
-  <a-page-header ghost :title="`Calendar for ${displayMonthLocale}`" @back="signOut" />
+  <a-page-header ghost :title="`Calendar for ${displayMonthLocale}`" @back="signOut">
+    <a-statistic title="Total" :value="query.loading.value ? '—' : totalSpent" :suffix="!query.loading.value && 'h'" />
+  </a-page-header>
 
   <a-layout>
     <a-spin :spinning="query.loading.value">
       <a-layout-content>
-        <a-card>
-          <a-statistic title="Total" :value="query.loading.value ? '—' : totalSpent" :suffix="!query.loading.value && 'h'" />
-        </a-card>
-
         <a-card>
           <a-calendar :value="displayDate" :mode="displayMode" @panel-change="onPanelChange" @change="onDateChange">
             <template #monthCellRender="{ current }">
