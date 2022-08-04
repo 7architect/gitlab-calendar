@@ -14,6 +14,7 @@ const query = useLogs({
   startDate: displayDate.value.startOf('year'),
   endDate: displayDate.value.endOf('year'),
 })
+const user = useUser()
 const data = computed(() => {
   const _logs = query.result.value?.group.timelogs.nodes
 
@@ -97,7 +98,12 @@ const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').form
 </script>
 
 <template>
-  <a-page-header ghost :title="`Calendar for ${displayMonthLocale}`" @back="signOut">
+  <a-page-header
+    ghost
+    :title="`Calendar for ${displayMonthLocale}`"
+    :sub-title="user"
+    @back="signOut"
+  >
     <a-statistic title="Total" :value="query.loading.value ? '—' : totalSpent" :suffix="!query.loading.value && 'h'" />
   </a-page-header>
 
