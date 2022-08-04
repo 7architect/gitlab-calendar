@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     AStatistic: typeof import('ant-design-vue/es')['Statistic']
     ATag: typeof import('ant-design-vue/es')['Tag']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
+    ATypographyLink: typeof import('ant-design-vue/es')['TypographyLink']
     ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']
     Counter: typeof import('./src/components/Counter.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']

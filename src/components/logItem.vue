@@ -38,12 +38,16 @@ const spent = computed(() => item.value.timeSpent.toFixed(1))
         class="text-xs whitespace-nowrap overflow-hidden overflow-ellipsis max-w-full"
         style="text-overflow: ellipsis"
       >
-        <a-tag>{{ spent }}h</a-tag>
+        <span class="w-[50px] inline-block"><a-tag>{{ spent }}h</a-tag></span>
 
-        <a class="text-black! opacity-80!" :href="url" target="_blank">
-          <span v-if="text">{{ text }}</span>
-          <span v-else class="opacity-50">-</span>
-        </a>
+        <a-typography-link
+          class="mr-1"
+          :href="url"
+          target="_blank"
+        >
+          {{ isMr ? `!${item.mergeRequest.iid}` : `#${item.issue.iid}` }}
+        </a-typography-link>
+        <span>{{ text }}</span>
       </span>
     </div>
   </a-tooltip>
