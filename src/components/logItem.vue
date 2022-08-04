@@ -10,6 +10,7 @@ const title = computed(() => isMr.value ? item.value.mergeRequest!.title : item.
 const text = computed(() => item.value?.note?.body)
 const status = computed(() => isMr.value ? 'warning' : 'success')
 const url = computed(() => isMr.value ? item.value.mergeRequest!.webUrl : item.value.issue!.webUrl || '')
+const spent = computed(() => item.value.timeSpent.toFixed(1))
 </script>
 
 <template>
@@ -37,11 +38,11 @@ const url = computed(() => isMr.value ? item.value.mergeRequest!.webUrl : item.v
         class="text-xs whitespace-nowrap overflow-hidden overflow-ellipsis max-w-full"
         style="text-overflow: ellipsis"
       >
-        <a-tag>{{ item.timeSpent }}h</a-tag>
+        <a-tag>{{ spent }}h</a-tag>
 
         <a class="text-black! opacity-80!" :href="url" target="_blank">
           <span v-if="text">{{ text }}</span>
-          <span v-else class="opacity-50">без текста</span>
+          <span v-else class="opacity-50">-</span>
         </a>
       </span>
     </div>

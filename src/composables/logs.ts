@@ -66,10 +66,9 @@ const QUERY = gql`
 
 export const useLogs = (params?: { startDate?: Dayjs; endDate?: Dayjs }) => {
   const formatDate = (date: Dayjs) => date.format('YYYY-MM-DD')
-
   return useQuery<TimeLogs, { start: string; end: string; user: string }>(QUERY, {
-    start: params?.startDate ? formatDate(params.startDate) : formatDate(dayjs().startOf('month')),
-    end: params?.endDate ? formatDate(params.endDate) : formatDate(dayjs().endOf('month')),
+    start: params?.startDate ? formatDate(params.startDate) : formatDate(dayjs().startOf('year')),
+    end: params?.endDate ? formatDate(params.endDate) : formatDate(dayjs().endOf('year')),
     user: useUser(),
   }, {
     fetchPolicy: 'no-cache',

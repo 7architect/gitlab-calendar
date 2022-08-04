@@ -6,15 +6,13 @@ import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import { useLogs } from '~/composables/logs'
 import { formatDate } from '~/composables/utils'
 
-onBeforeRouteUpdate(console.log)
-
 const router = useRouter()
 const route = useRoute()
 const displayDate = computed(() => dayjs((route.query?.date as string) || Date.now()))
 const displayMode = computed(() => route.query.mode || 'month')
 const query = useLogs({
-  startDate: displayDate.value.startOf('month'),
-  endDate: displayDate.value.endOf('month'),
+  startDate: displayDate.value.startOf('year'),
+  endDate: displayDate.value.endOf('year'),
 })
 const data = computed(() => {
   const _logs = query.result.value?.group.timelogs.nodes
@@ -37,7 +35,7 @@ const getLogByDay = (date: Dayjs) => {
 
   return data.value.filter((log) => {
     const logDate = dayjs(log.spentAt)
-    return logDate.isBetween(dayStart, dayEnd, 'hours')
+    return logDate.isBetween(dayStart, dayEnd, 'minutes')
   })
 }
 
@@ -53,19 +51,7 @@ const hoursOf = (date: Dayjs, { range = 'month' }: { range: OpUnitType }) => {
   return logs.reduce((acc, log) => {
     acc += log.timeSpent
     return acc
-  }, 0)
-}
-
-const _update = () => {
-  router.replace({
-    path: '/calendar',
-    query: { ...route.query, date: date.format('YYYY-MM-DD') },
-  })
-
-  query.refetch({
-    start: formatDate(date.startOf('month')),
-    end: formatDate(date.endOf('month')),
-  })
+  }, 0).toFixed(1)
 }
 
 const onDateChange = (date: Dayjs) => {
@@ -77,6 +63,7 @@ const onDateChange = (date: Dayjs) => {
   query.refetch({
     start: formatDate(date.startOf('month')),
     end: formatDate(date.endOf('month')),
+    user: useUser(),
   })
 }
 
@@ -90,10 +77,12 @@ const onPanelChange = (date: Dayjs, mode: string) => {
     ? {
         start: formatDate(date.startOf('month')),
         end: formatDate(date.endOf('month')),
+        user: useUser(),
       }
     : {
         start: formatDate(date.startOf('year')),
         end: formatDate(date.endOf('year')),
+        user: useUser(),
       },
   )
 }
@@ -118,17 +107,24 @@ const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').form
         </a-card>
 
         <a-card>
-          <a-calendar :value="displayDate" :mode="displayMode" @panel-change="onPanelChange" @change="onDateChange">
+          <a-calendar :value="displayDate" :mode="displayMode" @panel-change="onPanelChange">
             <template #monthCellRender="{ current }">
               <log-item-count :hours="hoursOf(current, { range: 'month' })" />
             </template>
             <template #dateCellRender="{ current }">
               <perfect-scrollbar>
                 <div class="mb-4! ml-3.5!">
-                  <a-tag :color="hoursOf(current, { range: 'day' }) !== 8 ? 'red' : 'blue'">
+                  <a-tag v-if="hoursOf(current, { range: 'day' }) > 8" color="orange">
                     {{ hoursOf(current, { range: 'day' }) }}h
                   </a-tag>
-                  <span class="text-xs underline">Всего (часов)</span>
+                  <a-tag v-else-if="hoursOf(current, { range: 'day' }) < 8" color="red">
+                    {{ hoursOf(current, { range: 'day' }) }}h
+                  </a-tag>
+                  <a-tag v-else color="green">
+                    {{ hoursOf(current, { range: 'day' }) }}h
+                  </a-tag>
+
+                  <span class="text-xs underline">Hours total</span>
                 </div>
                 <template v-for="(log, i) of getLogByDay(current)" :key="i">
                   <log-item :item="log" />
