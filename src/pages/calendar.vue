@@ -1,27 +1,75 @@
 <script setup lang="ts">
-import { LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 import type { Dayjs, OpUnitType } from 'dayjs'
 import dayjs from 'dayjs'
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import mergeDeep from 'lodash/merge'
 import { useLogs } from '~/composables/logs'
 import { formatDate } from '~/composables/utils'
 
 const router = useRouter()
 const route = useRoute()
 const displayDate = computed(() => dayjs((route.query?.date as string) || Date.now()))
-const displayMode = computed(() => route.query.mode || 'month')
+const displayMode = computed(() => (route.query.mode as OpUnitType) || 'month')
+
 const query = useLogs({
-  startDate: displayDate.value.startOf('year'),
-  endDate: displayDate.value.endOf('year'),
+  startDate: unref(displayDate).startOf(displayMode.value),
+  endDate: unref(displayDate).endOf(displayMode.value),
 })
+
+query.onResult(() => {
+  const lastEdgeIndex = query!.result.value!.group.timelogs.edges.length - 1
+  const nextCursor = query!.result.value!.group.timelogs.edges[lastEdgeIndex].cursor
+  const hasMore = query!.result.value!.group.timelogs.pageInfo.hasNextPage
+
+  if (hasMore) {
+    query.fetchMore({
+      variables: {
+        start: formatDate(displayDate.value.startOf(displayMode.value)),
+        end: formatDate(displayDate.value.endOf(displayMode.value)),
+        after: nextCursor,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const prevEdges = previousResult.group?.timelogs.edges || []
+        const newEdges = fetchMoreResult?.group.timelogs.edges
+        const pageInfo = fetchMoreResult?.group.timelogs.pageInfo
+
+        return newEdges
+          ? {
+              group: {
+                __typename: 'Group',
+                timelogs: {
+                  __typename: 'TimelogConnection',
+                  edges: [
+                    ...prevEdges,
+                    ...newEdges,
+                  ],
+                  pageInfo: fetchMoreResult.group.timelogs.pageInfo,
+                },
+              },
+            }
+          : previousResult
+      },
+    })
+  }
+},
+)
+
+watch(route, () => {
+  query.refetch({
+    start: formatDate(displayDate.value.startOf(displayMode.value)),
+    end: formatDate(displayDate.value.endOf(displayMode.value)),
+    user: useUser(),
+  })
+})
+
 const user = useUser()
 const data = computed(() => {
-  const _logs = query.result.value?.group.timelogs.nodes
+  const logs = query.result.value?.group.timelogs.edges.map(edge => edge.node)
 
-  if (!_logs)
+  if (!logs)
     return []
 
-  return _logs.map((log) => {
+  return logs.map((log) => {
     return {
       ...log,
       spentAt: dayjs(log.spentAt).format(),
@@ -60,12 +108,6 @@ const onDateChange = (date: Dayjs) => {
     path: '/calendar',
     query: { ...route.query, date: date.format('YYYY-MM-DD') },
   })
-
-  query.refetch({
-    start: formatDate(date.startOf('month')),
-    end: formatDate(date.endOf('month')),
-    user: useUser(),
-  })
 }
 
 const onPanelChange = (date: Dayjs, mode: string) => {
@@ -73,19 +115,6 @@ const onPanelChange = (date: Dayjs, mode: string) => {
     path: '/calendar',
     query: { date: date.format('YYYY-MM-DD'), mode },
   })
-
-  query.refetch(mode === 'month'
-    ? {
-        start: formatDate(date.startOf('month')),
-        end: formatDate(date.endOf('month')),
-        user: useUser(),
-      }
-    : {
-        start: formatDate(date.startOf('year')),
-        end: formatDate(date.endOf('year')),
-        user: useUser(),
-      },
-  )
 }
 
 const signOut = () => {
@@ -104,6 +133,9 @@ const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').form
     :sub-title="user"
     @back="signOut"
   >
+    <a-button @click="more">
+      more
+    </a-button>
     <a-statistic title="Total" :value="query.loading.value ? '—' : totalSpent" :suffix="!query.loading.value && 'h'" />
   </a-page-header>
 

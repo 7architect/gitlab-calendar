@@ -4,6 +4,13 @@ import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 import { useUser } from '~/composables/user'
 
+interface Pageinfo {
+  hasNextPage: boolean
+  hasPreviousPage: boolean
+  endCursor: string
+  startCursor: string
+}
+
 export interface TimeLog {
   issue?: {
     iid: string
@@ -26,37 +33,56 @@ export interface TimeLog {
   }
 }
 
-interface Nodes<T> { nodes: T[] }
+interface TimeLogsEdges {
+  cursor: string
+  node: TimeLog
+}
 
 interface TimeLogs {
   group: {
-    timelogs: Nodes<TimeLog>
+    timelogs: {
+      pageInfo: Pageinfo
+      edges: TimeLogsEdges[]
+    }
   }
 }
 
 const QUERY = gql`
-    query logs($start: Time!, $end: Time!, $user: String!) {
+    fragment Node on Timelog {
+        user {
+            username,
+            name
+        }
+        mergeRequest {
+            iid
+            webUrl
+            title
+        }
+        issue {
+            iid
+            webUrl
+            title
+        }
+        spentAt
+        timeSpent
+        note {
+            body
+        }
+    }
+    
+    query logs($start: Time!, $end: Time!, $user: String!, $after: String)  {
         group(fullPath: "ktteam") {
-            timelogs (startDate: $start, endDate: $end, username: $user) {
-                nodes {
-                    user {
-                        username,
-                        name
-                    }
-                    mergeRequest {
-                        iid
-                        webUrl
-                        title
-                    }
-                    issue {
-                        iid
-                        webUrl
-                        title
-                    }
-                    spentAt
-                    timeSpent
-                    note {
-                        body
+            timelogs (startDate: $start, endDate: $end, username: $user, after: $after, first: 100)  {
+                pageInfo {
+                    hasNextPage
+                    hasPreviousPage
+                    endCursor
+                    startCursor
+                }
+                edges  {
+                    cursor
+                    node {
+                        ...Node   
                     }
                 }
             }
@@ -66,11 +92,9 @@ const QUERY = gql`
 
 export const useLogs = (params?: { startDate?: Dayjs; endDate?: Dayjs }) => {
   const formatDate = (date: Dayjs) => date.format('YYYY-MM-DD')
-  return useQuery<TimeLogs, { start: string; end: string; user: string }>(QUERY, {
-    start: params?.startDate ? formatDate(params.startDate) : formatDate(dayjs().startOf('year')),
-    end: params?.endDate ? formatDate(params.endDate) : formatDate(dayjs().endOf('year')),
+  return useQuery<TimeLogs, { start: string; end: string; user: string; after?: string }>(QUERY, {
+    start: params?.startDate ? formatDate(params.startDate) : formatDate(dayjs().startOf('month')),
+    end: params?.endDate ? formatDate(params.endDate) : formatDate(dayjs().endOf('month')),
     user: useUser(),
-  }, {
-    fetchPolicy: 'no-cache',
   })
 }
