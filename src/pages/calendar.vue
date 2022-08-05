@@ -18,13 +18,13 @@ const fetchVariables = computed(() => ({
 }))
 const query = useLogs(fetchVariables.value)
 
-query.onResult(() => {
+query.onResult(async ({ data }) => {
   const lastEdgeIndex = query!.result.value!.group.timelogs.edges.length - 1
   const nextCursor = query!.result.value!.group.timelogs.edges[lastEdgeIndex].cursor
-  const hasMore = query!.result.value!.group.timelogs.pageInfo.hasNextPage
+  const hasMore = data.group.timelogs.pageInfo.hasNextPage
 
   if (hasMore) {
-    query.fetchMore({
+    await query.fetchMore({
       variables: {
         start: formatDate(displayDate.value.startOf(displayMode.value)),
         end: formatDate(displayDate.value.endOf(displayMode.value)),
@@ -37,9 +37,9 @@ query.onResult(() => {
         return newEdges
           ? {
               group: {
-                __typename: 'Group',
+                ...fetchMoreResult.group,
                 timelogs: {
-                  __typename: 'TimelogConnection',
+                  ...fetchMoreResult.group.timelogs,
                   edges: [
                     ...prevEdges,
                     ...newEdges,
