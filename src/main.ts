@@ -21,7 +21,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  if (!useToken() && to.path === '/calendar')
+  if (!useToken().value && to.path === '/calendar')
     return '/'
 })
 

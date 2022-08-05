@@ -3,4 +3,4 @@ export const setUser = (username: string) => {
   user.value = username
   localStorage.setItem('u', username)
 }
-export const useUser = () => user.value
+export const useUser = () => user

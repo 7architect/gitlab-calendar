@@ -1,8 +1,8 @@
 import { useQuery } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
-import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 import { useUser } from '~/composables/user'
+import { formatDate } from '~/composables/utils'
 
 interface Pageinfo {
   hasNextPage: boolean
@@ -49,6 +49,7 @@ interface TimeLogs {
 
 const QUERY = gql`
     fragment Node on Timelog {
+        __typename
         user {
             username,
             name
@@ -90,11 +91,10 @@ const QUERY = gql`
     }
 `
 
-export const useLogs = (params?: { startDate?: Dayjs; endDate?: Dayjs }) => {
-  const formatDate = (date: Dayjs) => date.format('YYYY-MM-DD')
+export const useLogs = (params?: { start?: string; end?: string; user?: string }) => {
   return useQuery<TimeLogs, { start: string; end: string; user: string; after?: string }>(QUERY, {
-    start: params?.startDate ? formatDate(params.startDate) : formatDate(dayjs().startOf('month')),
-    end: params?.endDate ? formatDate(params.endDate) : formatDate(dayjs().endOf('month')),
-    user: useUser(),
+    start: params?.start || formatDate(dayjs().startOf('month')),
+    end: params?.end || formatDate(dayjs().endOf('month')),
+    user: params?.user || useUser().value,
   })
 }

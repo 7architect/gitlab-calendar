@@ -2,19 +2,21 @@
 import type { Dayjs, OpUnitType } from 'dayjs'
 import dayjs from 'dayjs'
 import { useRoute, useRouter } from 'vue-router'
-import mergeDeep from 'lodash/merge'
 import { useLogs } from '~/composables/logs'
 import { formatDate } from '~/composables/utils'
 
 const router = useRouter()
 const route = useRoute()
+const user = useUser()
 const displayDate = computed(() => dayjs((route.query?.date as string) || Date.now()))
 const displayMode = computed(() => (route.query.mode as OpUnitType) || 'month')
 
-const query = useLogs({
-  startDate: unref(displayDate).startOf(displayMode.value),
-  endDate: unref(displayDate).endOf(displayMode.value),
-})
+const fetchVariables = computed(() => ({
+  start: formatDate(displayDate.value.startOf(displayMode.value)),
+  end: formatDate(displayDate.value.endOf(displayMode.value)),
+  user: (route.query.user as string) || useUser().value,
+}))
+const query = useLogs(fetchVariables.value)
 
 query.onResult(() => {
   const lastEdgeIndex = query!.result.value!.group.timelogs.edges.length - 1
@@ -31,7 +33,6 @@ query.onResult(() => {
       updateQuery: (previousResult, { fetchMoreResult }) => {
         const prevEdges = previousResult.group?.timelogs.edges || []
         const newEdges = fetchMoreResult?.group.timelogs.edges
-        const pageInfo = fetchMoreResult?.group.timelogs.pageInfo
 
         return newEdges
           ? {
@@ -55,27 +56,18 @@ query.onResult(() => {
 )
 
 watch(route, () => {
-  query.refetch({
-    start: formatDate(displayDate.value.startOf(displayMode.value)),
-    end: formatDate(displayDate.value.endOf(displayMode.value)),
-    user: useUser(),
-  })
+  query.refetch(fetchVariables.value)
 })
 
-const user = useUser()
 const data = computed(() => {
   const logs = query.result.value?.group.timelogs.edges.map(edge => edge.node)
-
-  if (!logs)
-    return []
-
-  return logs.map((log) => {
-    return {
+  return !logs
+    ? []
+    : logs.map(log => ({
       ...log,
       spentAt: dayjs(log.spentAt).format(),
       timeSpent: log.timeSpent / 60 / 60,
-    }
-  })
+    }))
 })
 
 const getLogByDay = (date: Dayjs) => {
@@ -113,7 +105,7 @@ const onDateChange = (date: Dayjs) => {
 const onPanelChange = (date: Dayjs, mode: string) => {
   router.replace({
     path: '/calendar',
-    query: { date: date.format('YYYY-MM-DD'), mode },
+    query: { ...route.query, date: date.format('YYYY-MM-DD'), mode },
   })
 }
 
@@ -124,19 +116,48 @@ const signOut = () => {
 
 const totalSpent = computed(() => hoursOf(displayDate.value, { range: 'month' }))
 const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').format('MMMM'))
+
+const changeUserVisibleModal = ref(false)
+const newUser = ref('')
+const changeUser = async () => {
+  setUser(newUser.value)
+  await router.replace({
+    path: '/calendar',
+    query: { ...route.query, user: newUser.value },
+  })
+  changeUserVisibleModal.value = false
+}
 </script>
 
 <template>
+  <a-modal
+    v-model:visible="changeUserVisibleModal"
+    :confirm-loading="query.loading.value"
+    title="Change user" @ok="changeUser"
+  >
+    <div flex justify-center>
+      <users-autocomplete v-model="newUser" />
+    </div>
+  </a-modal>
+
   <a-page-header
     ghost
     :title="`Calendar for ${displayMonthLocale}`"
     :sub-title="user"
     @back="signOut"
   >
-    <a-button @click="more">
-      more
-    </a-button>
-    <a-statistic title="Total" :value="query.loading.value ? '—' : totalSpent" :suffix="!query.loading.value && 'h'" />
+    <template #tags>
+      <a-button size="small" type="text" @click="changeUserVisibleModal = true">
+        change user
+      </a-button>
+    </template>
+    <a-row type="flex">
+      <a-statistic title="Total" :value="query.loading.value ? '—' : totalSpent">
+        <template>
+          <a-skeleton title :paragraph="{ rows: 0 }" active style="width: 100px" />
+        </template>
+      </a-statistic>
+    </a-row>
   </a-page-header>
 
   <a-layout>

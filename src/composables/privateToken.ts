@@ -3,5 +3,5 @@ export const setToken = (newToken: string) => {
   localStorage.setItem('token', newToken)
   token.value = newToken
 }
-export const useToken = () => token.value
+export const useToken = () => token
 

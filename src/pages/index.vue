@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Option } from 'ant-design-vue/es/vc-util/Children/toArray'
 import { useUser } from '~/composables/user'
 import { useUsers } from '~/composables/users'
 
@@ -20,16 +19,12 @@ const go = () => {
     router.push('/calendar')
   }
 }
-
-const filterOption = (input: string, option: { value: string }) => {
-  return option.value.toLowerCase().includes(input.toLowerCase())
-}
 </script>
 
 <template>
   <div mx-auto py-10 max-w="320px">
     <a-typography-title :level="4">
-      GitLab Worklogs Calendar
+      GitLab worklogs calendar
     </a-typography-title>
     <a-input
       id="input"
@@ -40,8 +35,7 @@ const filterOption = (input: string, option: { value: string }) => {
       w="320px"
     />
     <a-auto-complete
-      v-if="!usersQuery.error.value && users && users.length > 0"
-      v-show="token"
+      v-if="token"
       id="user"
       v-model:value="username"
       :options="users"
@@ -50,8 +44,7 @@ const filterOption = (input: string, option: { value: string }) => {
       autofocus
       type="text"
       w="320px"
-      :filter-option="filterOption"
-      @search="usersQuery.restart"
+      @search="onSearch"
     />
 
     <a-button
@@ -60,7 +53,7 @@ const filterOption = (input: string, option: { value: string }) => {
       type="primary"
       @click="go"
     >
-      sign in
+      go
     </a-button>
   </div>
 </template>
