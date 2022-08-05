@@ -96,5 +96,7 @@ export const useLogs = (params?: { start?: string; end?: string; user?: string }
     start: params?.start || formatDate(dayjs().startOf('month')),
     end: params?.end || formatDate(dayjs().endOf('month')),
     user: params?.user || useUser().value,
+  }, {
+    fetchPolicy: 'network-only',
   })
 }

@@ -120,6 +120,8 @@ const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').form
 const changeUserVisibleModal = ref(false)
 const newUser = ref('')
 const changeUser = async () => {
+  // fix: cache does not updates
+  localStorage.removeItem('apollo-cache-persist')
   setUser(newUser.value)
   await router.replace({
     path: '/calendar',
