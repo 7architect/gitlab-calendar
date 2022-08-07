@@ -1,7 +1,6 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client/core'
 import { setContext } from '@apollo/client/link/context'
-import { LocalStorageWrapper, persistCache } from 'apollo3-cache-persist'
-import { useToken } from '~/composables/privateToken'
+import { useUser } from '~/stores/userStore'
 
 // HTTP connection to the API
 const httpLink = createHttpLink({
@@ -10,7 +9,7 @@ const httpLink = createHttpLink({
 })
 
 const authLink = setContext((_, { headers, ...rest }) => {
-  const token = useToken().value
+  const token = useUser().token
   // return the headers to the context so httpLink can read them
   return {
     ...rest,
@@ -24,10 +23,10 @@ const authLink = setContext((_, { headers, ...rest }) => {
 // Cache implementation
 const cache = new InMemoryCache()
 
-persistCache({
-  cache,
-  storage: new LocalStorageWrapper(window.localStorage),
-})
+// persistCache({
+//   cache,
+//   storage: new LocalStorageWrapper(window.localStorage),
+// })
 
 // Create the apollo client
 export const apolloClient = new ApolloClient({

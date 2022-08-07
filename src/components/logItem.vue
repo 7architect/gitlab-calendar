@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { TimeLog } from '~/composables/logs'
+import type { Timelog } from '../../graphql'
 
-const props = defineProps<{ item: TimeLog }>()
+const props = defineProps<{ item: Timelog }>()
 
 const { item } = toRefs(props)
 
@@ -10,7 +10,10 @@ const title = computed(() => isMr.value ? item.value.mergeRequest!.title : item.
 const text = computed(() => item.value?.note?.body)
 const status = computed(() => isMr.value ? 'warning' : 'success')
 const url = computed(() => isMr.value ? item.value.mergeRequest!.webUrl : item.value.issue!.webUrl || '')
-const spent = computed(() => item.value.timeSpent.toFixed(1))
+const spent = computed(() => {
+  const hours = item.value.timeSpent / 60 / 60
+  return hours.toFixed(2)
+})
 </script>
 
 <template>

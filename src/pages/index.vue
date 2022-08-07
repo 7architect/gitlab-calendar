@@ -1,23 +1,14 @@
 <script setup lang="ts">
-import { useUser } from '~/composables/user'
-import { useUsers } from '~/composables/users'
+import { useUser } from '~/stores/userStore'
 
-const token = ref(useToken())
-const username = ref(useUser())
-const usersQuery = useUsers()
-const users = computed(() => usersQuery.result.value?.users.nodes.map(u => ({ value: u.username })))
-
-watch(token, () => {
-  setToken(token.value ?? '')
-  usersQuery.refetch()
-})
+const user = useUser()
+const token = ref(user.token)
+const username = ref(user.username)
 
 const router = useRouter()
 const go = () => {
-  if (token.value && username.value) {
-    setUser(username.value)
+  if (user.token && user.username)
     router.push('/calendar')
-  }
 }
 </script>
 
@@ -28,27 +19,17 @@ const go = () => {
     </a-typography-title>
     <a-input
       id="input"
-      v-model:value="token"
+      v-model:value="user.token"
       placeholder="Personal token"
       autofocus
       type="text"
       w="320px"
     />
-    <a-auto-complete
-      v-if="token"
-      id="user"
-      v-model:value="username"
-      :options="users"
-      class="mt-2"
-      placeholder="username"
-      autofocus
-      type="text"
-      w="320px"
-      @search="onSearch"
-    />
+
+    <users-autocomplete v-if="user.token" v-model="user.username" />
 
     <a-button
-      :disabled="!(token && username)"
+      :disabled="!(user.token && user.username)"
       class="mt-2"
       type="primary"
       @click="go"

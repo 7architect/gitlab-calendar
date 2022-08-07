@@ -2,196 +2,157 @@
 import type { Dayjs, OpUnitType } from 'dayjs'
 import dayjs from 'dayjs'
 import { useRoute, useRouter } from 'vue-router'
-import { useLogs } from '~/composables/logs'
+import { LoadingOutlined } from '@ant-design/icons-vue'
 import { formatDate } from '~/composables/utils'
+import { userLogsStore } from '~/stores/userLogsStore'
+import { useUser } from '~/stores/userStore'
 
 const router = useRouter()
 const route = useRoute()
 const user = useUser()
-const displayDate = computed(() => dayjs((route.query?.date as string) || Date.now()))
-const displayMode = computed(() => (route.query.mode as OpUnitType) || 'month')
+
+const displayDate = computed({
+  get: () => dayjs((route.query?.date as string) || Date.now()),
+  set(value: Dayjs) {
+    router.replace({ ...route, query: { ...route.query, date: formatDate(value) } })
+  },
+})
+
+const displayMode = computed({
+  get: () => (route.query.mode as OpUnitType) || 'month',
+  set(mode: OpUnitType) {
+    router.replace({ ...route, query: { ...route.query, mode } })
+  },
+})
+
+const displayUser = computed({
+  get: () => (route.query.user as string) || user.username,
+  set(user: string) {
+    router.replace({ ...route, query: { ...route.query, user } })
+  },
+})
+
+const displayMonth = computed(() => displayDate.value.format('MMMM'))
 
 const fetchVariables = computed(() => ({
   start: formatDate(displayDate.value.startOf(displayMode.value)),
   end: formatDate(displayDate.value.endOf(displayMode.value)),
-  user: (route.query.user as string) || useUser().value,
+  user: displayUser.value,
 }))
-const query = useLogs(fetchVariables.value)
 
-query.onResult(async ({ data }) => {
-  const lastEdgeIndex = query!.result.value!.group.timelogs.edges.length - 1
-  const nextCursor = query!.result.value!.group.timelogs.edges[lastEdgeIndex].cursor
-  const hasMore = data.group.timelogs.pageInfo.hasNextPage
+const userLogs = userLogsStore()
+userLogs.fetchLogsAggregated(fetchVariables.value)
 
-  if (hasMore) {
-    await query.fetchMore({
-      variables: {
-        start: formatDate(displayDate.value.startOf(displayMode.value)),
-        end: formatDate(displayDate.value.endOf(displayMode.value)),
-        after: nextCursor,
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        const prevEdges = previousResult.group?.timelogs.edges || []
-        const newEdges = fetchMoreResult?.group.timelogs.edges
+const totalSpent = computed(() => userLogs.hoursOf(displayDate.value, { range: displayMode.value }))
 
-        return newEdges
-          ? {
-              group: {
-                ...fetchMoreResult.group,
-                timelogs: {
-                  ...fetchMoreResult.group.timelogs,
-                  edges: [
-                    ...prevEdges,
-                    ...newEdges,
-                  ],
-                  pageInfo: fetchMoreResult.group.timelogs.pageInfo,
-                },
-              },
-            }
-          : previousResult
-      },
-    })
-  }
-},
-)
-
-watch(route, () => {
-  query.refetch(fetchVariables.value)
+watch(fetchVariables, () => {
+  userLogs.fetchLogsAggregated(fetchVariables.value)
 })
 
-const data = computed(() => {
-  const logs = query.result.value?.group.timelogs.edges.map(edge => edge.node)
-  return !logs
-    ? []
-    : logs.map(log => ({
-      ...log,
-      spentAt: dayjs(log.spentAt).format(),
-      timeSpent: log.timeSpent / 60 / 60,
-    }))
-})
-
-const getLogByDay = (date: Dayjs) => {
-  const dayStart = date.startOf('day')
-  const dayEnd = date.endOf('day')
-
-  return data.value.filter((log) => {
-    const logDate = dayjs(log.spentAt)
-    return logDate.isBetween(dayStart, dayEnd, 'minutes')
-  })
+const getHoursColor = (hours: number) => {
+  if (hours < 8)
+    return 'red'
+  else if (hours > 8)
+    return 'orange'
+  else if (hours === 8.0)
+    return 'green'
+  else return null
 }
 
-const hoursOf = (date: Dayjs, { range = 'month' }: { range: OpUnitType }) => {
-  const dateStart = date.startOf(range)
-  const dateEnd = date.endOf(range)
-
-  const logs = data.value.filter((log) => {
-    const logDate = dayjs(log.spentAt)
-    return logDate.isBetween(dateStart, dateEnd, 'days', '[]')
-  })
-
-  return logs.reduce((acc, log) => {
-    acc += log.timeSpent
-    return acc
-  }, 0).toFixed(1)
+const onPanelChange = (_: any, mode: OpUnitType) => {
+  displayMode.value = mode
 }
-
-const onDateChange = (date: Dayjs) => {
-  router.replace({
-    path: '/calendar',
-    query: { ...route.query, date: date.format('YYYY-MM-DD') },
-  })
+const onChange = () => {
+  if (displayMode.value === 'year')
+    displayMode.value = 'month'
 }
-
-const onPanelChange = (date: Dayjs, mode: string) => {
-  router.replace({
-    path: '/calendar',
-    query: { ...route.query, date: date.format('YYYY-MM-DD'), mode },
-  })
-}
-
-const signOut = () => {
-  localStorage.removeItem('token')
-  router.back()
-}
-
-const totalSpent = computed(() => hoursOf(displayDate.value, { range: 'month' }))
-const displayMonthLocale = computed(() => displayDate.value.locale('ru_RU').format('MMMM'))
 
 const changeUserVisibleModal = ref(false)
-const newUser = ref('')
-const changeUser = async () => {
-  // fix: cache does not updates
-  localStorage.removeItem('apollo-cache-persist')
-  setUser(newUser.value)
-  await router.replace({
-    path: '/calendar',
-    query: { ...route.query, user: newUser.value },
-  })
-  changeUserVisibleModal.value = false
+const onUserChanged = (user: string) => {
+  displayUser.value = user
 }
+
+const indicator = h(LoadingOutlined, {
+  style: { fontSize: '24px' },
+  spin: true,
+})
+
+const showIssues = ref(false)
+const showMrs = ref(true)
 </script>
 
 <template>
-  <a-modal
-    v-model:visible="changeUserVisibleModal"
-    :confirm-loading="query.loading.value"
-    title="Change user" @ok="changeUser"
-  >
-    <div flex justify-center>
-      <users-autocomplete v-model="newUser" />
-    </div>
-  </a-modal>
+  <change-user-dialog v-model:visible="changeUserVisibleModal" :loading="userLogs._loading" @changed="onUserChanged" />
 
   <a-page-header
     ghost
-    :title="`Calendar for ${displayMonthLocale}`"
-    :sub-title="user"
-    @back="signOut"
+    :title="`Calendar for ${displayMonth}`"
+    :sub-title="`@${user.username}`"
+    @back="user.logout"
   >
     <template #tags>
-      <a-button size="small" type="text" @click="changeUserVisibleModal = true">
+      <a-button size="small" type="outline" @click="changeUserVisibleModal = true">
         change user
       </a-button>
     </template>
+
     <a-row type="flex">
-      <a-statistic title="Total" :value="query.loading.value ? '—' : totalSpent">
-        <template>
-          <a-skeleton title :paragraph="{ rows: 0 }" active style="width: 100px" />
+      <a-statistic title="Total spent hours" :value="userLogs._loading ? '—' : totalSpent">
+        <template #formatter>
+          <a-skeleton-button v-if="userLogs._loading" active block />
+          <span v-else>{{ totalSpent }}</span>
         </template>
       </a-statistic>
     </a-row>
+    <div my-4 />
+    <a-col>
+      <label flex items-center mt-2>
+        <a-switch v-model:checked="showIssues" size="small" />
+        <a-typography-text ml-4>Show issues ({{ userLogs.onlyIssues.length }})</a-typography-text>
+        <div mx-2 mt="2px">
+          <a-badge status="success" />
+        </div>
+      </label>
+
+      <label flex items-center mt-2>
+        <a-switch v-model:checked="showMrs" size="small" />
+        <a-typography-text ml-4>Show merge requests ({{ userLogs.onlyMergeRequests.length }})</a-typography-text>
+        <div mx-2 mt="2px">
+          <a-badge status="warning" />
+        </div>
+      </label>
+    </a-col>
   </a-page-header>
 
   <a-layout>
-    <a-spin :spinning="query.loading.value">
+    <a-spin :spinning="userLogs._loading" :indicator="indicator">
       <a-layout-content>
         <a-card>
-          <a-calendar :value="displayDate" :mode="displayMode" @panel-change="onPanelChange" @change="onDateChange">
+          <a-calendar v-model:value="displayDate" :mode="displayMode" @change="onChange" @panel-change="onPanelChange">
             <template #monthCellRender="{ current }">
-              <log-item-count :hours="hoursOf(current, { range: 'month' })" />
+              <log-item-count :hours="userLogs.hoursOf(current, { range: 'month' })" />
             </template>
             <template #dateCellRender="{ current }">
-              <perfect-scrollbar v-if="getLogByDay(current).length > 0">
+              <perfect-scrollbar v-if="userLogs.day(current)">
                 <div class="mb-4! ml-3.5!">
-                  <a-tag v-if="hoursOf(current, { range: 'day' }) > 8" color="orange">
-                    {{ hoursOf(current, { range: 'day' }) }}h
-                  </a-tag>
-                  <a-tag v-else-if="hoursOf(current, { range: 'day' }) < 8" color="red">
-                    {{ hoursOf(current, { range: 'day' }) }}h
-                  </a-tag>
-                  <a-tag v-else color="green">
-                    {{ hoursOf(current, { range: 'day' }) }}h
-                  </a-tag>
-
-                  <span class="text-xs underline">Hours total</span>
+                  <template v-if="userLogs.hoursOf(current, { range: 'day' })">
+                    <a-tag
+                      :color="getHoursColor(userLogs.hoursOf(current, { range: 'day' }))"
+                    >
+                      {{ userLogs.hoursOf(current, { range: 'day' }) }}h
+                    </a-tag>
+                    <span class="text-xs underline">Hours total</span>
+                  </template>
                 </div>
-                <template v-for="(log, i) of getLogByDay(current)" :key="i">
-                  <log-item :item="log" />
+                <template v-for="(log, i) of userLogs.day(current)" :key="i">
+                  <div v-show="showIssues && !!log.node.issue">
+                    <log-item :item="log.node" />
+                  </div>
+                  <div v-show="showMrs && !!log.node.mergeRequest">
+                    <log-item :item="log.node" />
+                  </div>
                 </template>
               </perfect-scrollbar>
-              <div v-else class="text-center my-2 text-sm opacity-20">
-                —
-              </div>
             </template>
           </a-calendar>
         </a-card>

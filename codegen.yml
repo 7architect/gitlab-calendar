@@ -1,0 +1,12 @@
+schema: https://git.puls.ru/api/graphql
+documents: ./src/**/*.graphql
+
+generates:
+  ./graphql.d.ts:
+    plugins:
+      - typescript
+
+  ./graphql-operations.ts:
+    plugins:
+      - typescript-operations
+      - typescript-document-nodes

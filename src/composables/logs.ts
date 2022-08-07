@@ -33,17 +33,15 @@ export interface TimeLog {
   }
 }
 
-interface TimeLogsEdges {
+export interface TimeLogsEdges {
   cursor: string
   node: TimeLog
 }
 
 interface TimeLogs {
-  group: {
-    timelogs: {
-      pageInfo: Pageinfo
-      edges: TimeLogsEdges[]
-    }
+  timelogs: {
+    pageInfo: Pageinfo
+    edges: TimeLogsEdges[]
   }
 }
 
@@ -51,6 +49,7 @@ const QUERY = gql`
     fragment Node on Timelog {
         __typename
         user {
+            id
             username,
             name
         }
@@ -72,23 +71,21 @@ const QUERY = gql`
     }
     
     query logs($start: Time!, $end: Time!, $user: String!, $after: String)  {
-        group(fullPath: "ktteam") {
-            timelogs (startDate: $start, endDate: $end, username: $user, after: $after, first: 100)  {
-                pageInfo {
-                    hasNextPage
-                    hasPreviousPage
-                    endCursor
-                    startCursor
-                }
-                edges  {
-                    cursor
-                    node {
-                        ...Node   
-                    }
-                }
-            }
-        }
-    }
+          timelogs (startDate: $start, endDate: $end, username: $user, after: $after, first: 100)  {
+              pageInfo {
+                  hasNextPage
+                  hasPreviousPage
+                  endCursor
+                  startCursor
+              }
+              edges  {
+                  cursor
+                  node {
+                      ...Node   
+                  }
+              }
+          }
+      }
 `
 
 export const useLogs = (params?: { start?: string; end?: string; user?: string }) => {

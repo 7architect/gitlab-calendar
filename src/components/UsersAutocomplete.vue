@@ -19,7 +19,6 @@ const onSearch = debounce((input: string) => {
 
 <template>
   <a-auto-complete
-    v-if="token"
     id="user"
     :value="value"
     :options="users"

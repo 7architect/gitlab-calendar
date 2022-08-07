@@ -1,6 +1,8 @@
 import { useQuery } from '@vue/apollo-composable'
 import gql from 'graphql-tag'
 
+// TODO: pinia store
+
 interface Users {
   users: {
     nodes: Array<{ username: string }>

@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import codegen from 'vite-plugin-graphql-codegen'
 
 export default defineConfig({
   resolve: {
@@ -16,6 +17,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    codegen(),
     Vue({
       reactivityTransform: true,
     }),

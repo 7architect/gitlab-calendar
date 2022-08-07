@@ -1,0 +1,40 @@
+fragment Node on Timelog {
+    __typename
+    user {
+        id
+        username,
+        name
+    }
+    mergeRequest {
+        iid
+        webUrl
+        title
+    }
+    issue {
+        iid
+        webUrl
+        title
+    }
+    spentAt
+    timeSpent
+    note {
+        body
+    }
+}
+
+query logs($start: Time!, $end: Time!, $user: String!, $after: String)  {
+    timelogs (startDate: $start, endDate: $end, username: $user, after: $after, first: 100)  {
+        pageInfo {
+            hasNextPage
+            hasPreviousPage
+            endCursor
+            startCursor
+        }
+        edges  {
+            cursor
+            node {
+                ...Node
+            }
+        }
+    }
+}
