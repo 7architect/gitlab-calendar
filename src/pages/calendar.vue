@@ -77,7 +77,7 @@ const indicator = h(LoadingOutlined, {
   spin: true,
 })
 
-const showIssues = ref(false)
+const showIssues = ref(true)
 const showMrs = ref(true)
 </script>
 
