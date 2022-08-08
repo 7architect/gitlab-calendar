@@ -16,4 +16,4 @@ blocks:
             - npm i -g pnpm
             - pnpm install
             - cache store
-            - pnpm build --if-present
+            - pnpm build
