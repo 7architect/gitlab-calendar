@@ -24,6 +24,7 @@ specifiers:
   jsdom: 20.0.0
   lodash.debounce: ^4.0.8
   lodash.merge: ^4.6.2
+  logrocket: ^3.0.1
   pinia: ^2.0.17
   pinia-plugin-persistedstate: ^2.1.0
   pnpm: 7.8.0
@@ -56,6 +57,7 @@ dependencies:
   graphql-tag: 2.12.6_graphql@16.5.0
   lodash.debounce: 4.0.8
   lodash.merge: 4.6.2
+  logrocket: 3.0.1
   pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
   pinia-plugin-persistedstate: 2.1.0_pinia@2.0.17
   vue: 3.2.37
@@ -5244,6 +5246,10 @@ packages:
       cli-cursor: 3.1.0
       slice-ansi: 4.0.0
       wrap-ansi: 6.2.0
+
+  /logrocket/3.0.1:
+    resolution: {integrity: sha512-jOWG+jEzobKVxGytzZ+4KGm2kiMQMRTHab2uDWQyVZcHfEF38BlCH1yjQVY4LCmuQUwZitP9biMzJZnyUQ0dtQ==}
+    dev: false
 
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}

@@ -9,6 +9,7 @@ import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 import PerfectScrollbar from 'vue3-perfect-scrollbar'
 import dayjs from 'dayjs'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import LogRocket from 'logrocket'
 import 'uno.css'
 
 import App from './App.vue'
@@ -17,22 +18,24 @@ import './styles/main.css'
 import { useUser } from '~/stores/userStore'
 
 dayjs.extend(isBetween)
+LogRocket.init('pet/gitlab-calendar')
 
 const app = createApp(App)
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes as RouteRecordRaw[],
 })
 
 router.beforeEach((to) => {
-  if (useUser().token && to.path === '/')
+  const user = useUser()
+  if (user.authenticated && to.path === '/')
     return '/calendar'
 
-  if (!useUser().token && to.path === '/calendar')
+  if (!user.authenticated && to.path === '/calendar')
     return '/'
 })
 
