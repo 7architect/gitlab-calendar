@@ -1,0 +1,16 @@
+query SearchIssues($group: ID!, $search: String!, $usernames: [String!]) {
+    group(fullPath: $group) {
+        issues(search: $search, assigneeUsernames: $usernames) {
+            edges {
+                node {
+                    title
+                    iid
+                    id
+                    webUrl
+                    timeEstimate
+                    totalTimeSpent
+                }
+            }
+        }
+    }
+}

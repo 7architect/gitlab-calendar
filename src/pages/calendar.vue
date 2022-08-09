@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" xmlns:hover="http://www.w3.org/1999/xhtml">
 import type { Dayjs, OpUnitType } from 'dayjs'
 import dayjs from 'dayjs'
 import { useRoute, useRouter } from 'vue-router'
@@ -132,27 +132,45 @@ const showMrs = ref(true)
             <template #monthCellRender="{ current }">
               <log-item-count :hours="userLogs.hoursOf(current, { range: 'month' })" />
             </template>
-            <template #dateCellRender="{ current }">
-              <perfect-scrollbar v-if="userLogs.day(current)">
-                <div class="mb-4! ml-3.5!">
-                  <template v-if="userLogs.hoursOf(current, { range: 'day' })">
-                    <a-tag
-                      :color="getHoursColor(userLogs.hoursOf(current, { range: 'day' }))"
-                    >
-                      {{ userLogs.hoursOf(current, { range: 'day' }) }}h
-                    </a-tag>
-                    <span class="text-xs underline">Hours total</span>
-                  </template>
-                </div>
-                <template v-for="(log, i) of userLogs.day(current)" :key="i">
-                  <div v-show="showIssues && !!log.node.issue">
-                    <log-item :item="log.node" />
-                  </div>
-                  <div v-show="showMrs && !!log.node.mergeRequest">
-                    <log-item :item="log.node" />
-                  </div>
+            <template #dateFullCellRender="{ current }">
+              <dialog-wrapper
+                h-auto border-t-2 border-gray-200 mx-2 py="8px" px="4px" class="group"
+                transition duration-1000
+                hover="bg-blue-50 border-blue-500 duration-300!"
+                :class="{ 'bg-red-50! border-red-100!': ['Sa', 'Su'].includes(current.format('dd')) }"
+              >
+                <template #default="{ visible, doneSignal }">
+                  <create-timelog-note-dialog :visible="visible" :done-signal="doneSignal" :timelog-date="current" />
+
+                  <a-row mb-4>
+                    <a-col justify="center">
+                      <span v-if="userLogs.hoursOf(current, { range: 'day' })" ml-4>
+                        <a-tag
+                          :color="getHoursColor(userLogs.hoursOf(current, { range: 'day' }))"
+                        >
+                          {{ userLogs.hoursOf(current, { range: 'day' }) }}h
+                        </a-tag>
+                        <span class="text-sm underline mr-2">total</span>
+                      </span>
+                    </a-col>
+
+                    <a-col flex="auto">
+                      {{ current.format('DD') }}
+                    </a-col>
+                  </a-row>
+
+                  <perfect-scrollbar v-if="userLogs.day(current)" style="height: 100px">
+                    <template v-for="(log, i) of userLogs.day(current)" :key="i">
+                      <div v-show="showIssues && !!log.node.issue">
+                        <log-item :item="log.node" />
+                      </div>
+                      <div v-show="showMrs && !!log.node.mergeRequest">
+                        <log-item :item="log.node" />
+                      </div>
+                    </template>
+                  </perfect-scrollbar>
                 </template>
-              </perfect-scrollbar>
+              </dialog-wrapper>
             </template>
           </a-calendar>
         </a-card>

@@ -38,3 +38,15 @@ query logs($start: Time!, $end: Time!, $user: String!, $after: String)  {
         }
     }
 }
+
+mutation CreateNote($gid: NoteableID!, $body: String!) {
+    createNote(input:{
+        noteableId: $gid,
+        body: $body
+    }) {
+        note {
+            body
+            url
+        }
+    }
+}

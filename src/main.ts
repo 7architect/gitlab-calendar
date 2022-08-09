@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
 import { provideApolloClient } from '@vue/apollo-composable'
@@ -8,8 +7,7 @@ import { createPinia } from 'pinia'
 import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css'
 import PerfectScrollbar from 'vue3-perfect-scrollbar'
 import dayjs from 'dayjs'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
-import LogRocket from 'logrocket'
+import piniaPersistedState from 'pinia-plugin-persistedstate'
 import 'uno.css'
 
 import App from './App.vue'
@@ -18,16 +16,21 @@ import './styles/main.css'
 import { useUser } from '~/stores/userStore'
 
 dayjs.extend(isBetween)
-LogRocket.init('pet/gitlab-calendar')
+
+if (!import.meta.env.DEV) {
+  import('logrocket').then((LogRocket) => {
+    LogRocket.init('pet/gitlab-calendar')
+  })
+}
 
 const app = createApp(App)
 
 const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
+pinia.use(piniaPersistedState)
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: routes as RouteRecordRaw[],
+  routes,
 })
 
 router.beforeEach((to) => {

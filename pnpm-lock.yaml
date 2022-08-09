@@ -10,6 +10,7 @@ specifiers:
   '@iconify-json/carbon': 1.1.7
   '@types/lodash': ^4.14.182
   '@types/node': 18.6.4
+  '@types/signals': ^1.0.1
   '@unocss/reset': 0.45.5
   '@vitejs/plugin-vue': 3.0.1
   '@vue/apollo-composable': 4.0.0-alpha.19
@@ -28,6 +29,7 @@ specifiers:
   pinia: ^2.0.17
   pinia-plugin-persistedstate: ^2.1.0
   pnpm: 7.8.0
+  signals: ^1.0.0
   taze: 0.7.6
   typescript: 4.7.4
   unocss: 0.45.5
@@ -60,6 +62,7 @@ dependencies:
   logrocket: 3.0.1
   pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
   pinia-plugin-persistedstate: 2.1.0_pinia@2.0.17
+  signals: 1.0.0
   vue: 3.2.37
   vue-router: 4.1.3_vue@3.2.37
   vue3-perfect-scrollbar: 1.6.0
@@ -69,6 +72,7 @@ devDependencies:
   '@iconify-json/carbon': 1.1.7
   '@types/lodash': 4.14.182
   '@types/node': 18.6.4
+  '@types/signals': 1.0.1
   '@unocss/reset': 0.45.5
   '@vitejs/plugin-vue': 3.0.1_vite@3.0.4+vue@3.2.37
   '@vue/test-utils': 2.0.2_vue@3.2.37
@@ -1603,6 +1607,10 @@ packages:
   /@types/q/1.5.5:
     resolution: {integrity: sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==}
     dev: false
+
+  /@types/signals/1.0.1:
+    resolution: {integrity: sha512-t6qsSE/nUiDN4MO5pZIR7XdhCNt0No0oJL1y1JSYovQL7+GvWzdBI0eD0ADZ2gW4Lg+CB4/d0j1nXe9lMpEHow==}
+    dev: true
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
@@ -6841,6 +6849,10 @@ packages:
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+
+  /signals/1.0.0:
+    resolution: {integrity: sha512-dE3lBiqgrgIvpGHYBy6/kiYKfh0HXRmbg0ocakBKiOefbal6ZeTtNlQlxsu9ADkNzv5OmRwRKu+IaTPSqJdZDg==}
+    dev: false
 
   /signedsource/1.0.0:
     resolution: {integrity: sha512-6+eerH9fEnNmi/hyM1DXcRK3pWdoMQtlkQ+ns0ntzunjKqp5i3sKCc80ym8Fib3iaYhdJUOPdhlJWj1tvge2Ww==}

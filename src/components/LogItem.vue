@@ -12,7 +12,7 @@ const status = computed(() => isMr.value ? 'warning' : 'success')
 const url = computed(() => isMr.value ? item.value.mergeRequest!.webUrl : item.value.issue!.webUrl || '')
 const spent = computed(() => {
   const hours = item.value.timeSpent / 60 / 60
-  return hours.toFixed(2)
+  return hours.toFixed(1)
 })
 </script>
 
