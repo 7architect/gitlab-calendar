@@ -60,11 +60,25 @@ const sent = ref(false)
 const confirmLoading = ref(false)
 
 const handleOk = async () => {
-  confirmLoading.value = true
-  await formRef.value?.validateFields()
-  noteUrl.value = await issues.createTimelog(data)
-  sent.value = true
-  confirmLoading.value = false
+  try {
+    if (!(await formRef.value?.validateFields()))
+      return
+
+    // TODO: data type same as createTimelog params
+    // TODO: improve validation for empty strings
+    const timelogUrl = await issues.createTimelog(data as { spent: string; issue: string; comment: string; date: Dayjs })
+
+    if (timelogUrl?.note?.url)
+      noteUrl.value = timelogUrl.note.url
+
+    sent.value = true
+  }
+  catch (e) {
+
+  }
+  finally {
+    confirmLoading.value = false
+  }
 }
 
 const close = () => {
@@ -75,7 +89,7 @@ const close = () => {
 </script>
 
 <template>
-  <a-modal :closable="false">
+  <a-modal :closable="false" :z-index="9999">
     <template #footer>
       <div v-if="sent">
         <a-button type="primary" :href="noteUrl" target="_blank">

@@ -32,7 +32,7 @@ export const useIssues = defineStore('issues', {
         },
       })
 
-      return result.data?.createNote?.note?.url ?? null
+      return result.data?.createNote ?? null
     },
     async searchIssue(search: SearchIssuesQueryVariables['search']) {
       const result = await client.query<SearchIssuesQuery, SearchIssuesQueryVariables>({
