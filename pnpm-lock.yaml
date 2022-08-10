@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@ant-design/icons-vue': 6.1.0
   '@antfu/eslint-config': 0.26.1
-  '@apollo/client': ^3.6.9
+  '@apollo/client': 3.6.9
   '@graphql-codegen/cli': 2.11.5
   '@graphql-codegen/typescript-document-nodes': 2.3.3
   '@graphql-codegen/typescript-operations': 2.5.3
@@ -17,7 +17,7 @@ specifiers:
   '@vue/test-utils': 2.0.2
   '@vueuse/core': 9.1.0
   ant-design-vue: 3.2.11
-  apollo3-cache-persist: ^0.14.1
+  apollo3-cache-persist: 0.14.1
   dayjs: 1.11.4
   eslint: 8.21.0
   graphql: 16.5.0
