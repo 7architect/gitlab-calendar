@@ -48,7 +48,7 @@
     "taze": "0.7.6",
     "typescript": "4.7.4",
     "unocss": "0.45.5",
-    "unplugin-auto-import": "0.10.3",
+    "unplugin-auto-import": "0.11.1",
     "unplugin-vue-components": "0.22.4",
     "vite": "3.0.4",
     "vite-plugin-graphql-codegen": "^1.8.0",
