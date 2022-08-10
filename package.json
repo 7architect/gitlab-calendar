@@ -54,7 +54,7 @@
     "vite-plugin-graphql-codegen": "^1.8.0",
     "vite-plugin-pages": "0.25.0",
     "vitest": "0.21.1",
-    "vue-tsc": "0.39.4"
+    "vue-tsc": "0.40.0"
   },
   "eslintConfig": {
     "extends": "@antfu"
