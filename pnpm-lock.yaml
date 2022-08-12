@@ -18,7 +18,7 @@ specifiers:
   '@vueuse/core': 9.1.0
   ant-design-vue: 3.2.11
   apollo3-cache-persist: 0.14.1
-  dayjs: 1.11.4
+  dayjs: 1.11.5
   eslint: 8.21.0
   graphql: 16.5.0
   graphql-tag: 2.12.6
@@ -54,7 +54,7 @@ dependencies:
   '@vueuse/core': 9.1.0_vue@3.2.37
   ant-design-vue: 3.2.11_vue@3.2.37
   apollo3-cache-persist: 0.14.1_@apollo+client@3.6.9
-  dayjs: 1.11.4
+  dayjs: 1.11.5
   graphql: 16.5.0
   graphql-tag: 2.12.6_graphql@16.5.0
   lodash.debounce: 4.0.8
@@ -2246,7 +2246,7 @@ packages:
       '@simonwep/pickr': 1.8.2
       array-tree-filter: 2.1.0
       async-validator: 4.2.5
-      dayjs: 1.11.4
+      dayjs: 1.11.5
       dom-align: 1.12.3
       dom-scroll-into-view: 2.0.1
       lodash: 4.17.21
@@ -3072,8 +3072,8 @@ packages:
   /dataloader/2.1.0:
     resolution: {integrity: sha512-qTcEYLen3r7ojZNgVUaRggOI+KM7jrKxXeSHhogh/TWxYMeONEMqY+hmkobiYQozsGIyg9OYVzO4ZIfoB4I0pQ==}
 
-  /dayjs/1.11.4:
-    resolution: {integrity: sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g==}
+  /dayjs/1.11.5:
+    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
     dev: false
 
   /debounce/1.2.1:
