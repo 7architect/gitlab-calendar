@@ -4,7 +4,7 @@ import type { Dayjs } from 'dayjs'
 import dayjs from 'dayjs'
 import { reactive, ref } from 'vue'
 import type { FormInstance } from 'ant-design-vue'
-import type { IssueEdge } from '../../graphql'
+import type { IssueFragment } from '../../graphql'
 import { useIssues } from '~/stores/issuesStore'
 
 const props = defineProps<{
@@ -27,24 +27,24 @@ const data = reactive<{
 const formRef = ref<FormInstance>()
 
 const issues = useIssues()
-const selectedIssue = ref<IssueEdge>()
+const selectedIssue = ref<IssueFragment>()
 
 const totalSpentPercent = computed(() => {
-  if (!selectedIssue.value?.node)
+  if (!selectedIssue.value)
     return 0
-  const issueTotalSpent = selectedIssue.value.node.totalTimeSpent
-  const estimate = selectedIssue.value.node.timeEstimate
+  const issueTotalSpent = selectedIssue.value.totalTimeSpent
+  const estimate = selectedIssue.value.timeEstimate
   return (issueTotalSpent / estimate) * 100
 })
 
 const toHours = (value: number) => value / 60 / 60
-const estimateTitle = computed(() => !selectedIssue.value?.node
+const estimateTitle = computed(() => !selectedIssue.value
   ? null
-  : `Est: ${toHours(selectedIssue.value?.node.timeEstimate)}h, spent: ${toHours(selectedIssue.value?.node.totalTimeSpent)}`,
+  : `Est: ${toHours(selectedIssue.value.timeEstimate)}h, spent: ${toHours(selectedIssue.value.totalTimeSpent)}`,
 )
 
-const validateSpent = v => /^((\d+mo)\s?)|((\d+w)\s?)|((\d+d)\s?)|((\d+h)\s?)|((\d+m)\s?)$/g.test(v)
-const spentStringValidator = async (_, value: string) => {
+const validateSpent = (v: string) => /^((\d+mo)\s?)|((\d+w)\s?)|((\d+d)\s?)|((\d+h)\s?)|((\d+m)\s?)$/g.test(v)
+const spentStringValidator = async (_: any, value: string) => {
   if (!validateSpent(value))
     return Promise.reject(Error('Invalid format, expected <time><time_unit>'))
 
@@ -52,7 +52,7 @@ const spentStringValidator = async (_, value: string) => {
 }
 
 const valid = computed(() => {
-  return data.date?.isValid() && data.issue !== null && validateSpent(data.spent)
+  return data.date?.isValid() && data.issue !== null && validateSpent(data.spent!)
 })
 
 const noteUrl = ref('')
@@ -89,7 +89,7 @@ const close = () => {
 </script>
 
 <template>
-  <a-modal :closable="false" :z-index="9999">
+  <a-modal :closable="false" :z-index="1040">
     <template #footer>
       <div v-if="sent">
         <a-button type="primary" :href="noteUrl" target="_blank">

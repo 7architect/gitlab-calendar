@@ -79,6 +79,8 @@ const indicator = h(LoadingOutlined, {
 
 const showIssues = ref(true)
 const showMrs = ref(true)
+
+const isNow = (date: Dayjs) => dayjs().date() === date.date()
 </script>
 
 <template>
@@ -149,8 +151,11 @@ const showMrs = ref(true)
               <dialog-wrapper
                 h-auto border-t-2 border-gray-200 mx-1 py="8px" px="4px" class="group"
                 transition duration-1000
-                hover="bg-blue-50 border-blue-500 duration-300!"
-                :class="{ 'bg-red-50! border-red-100!': ['Sa', 'Su'].includes(current.format('dd')) }"
+                hover="bg-gray-100 border-gray-400 duration-300!"
+                :class="{
+                  'bg-red-50! border-red-100!': ['Sa', 'Su'].includes(current.format('dd')),
+                  'bg-blue-50! border-blue-500!': isNow(current),
+                }"
               >
                 <template #default="{ visible, doneSignal, listeners }">
                   <create-timelog-note-dialog :visible="visible" :done-signal="doneSignal" :timelog-date="current" />
