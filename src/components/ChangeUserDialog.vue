@@ -18,7 +18,6 @@ const proxyVisible = computed({
 
 const newUser = ref('')
 const changeUser = () => {
-  user.username = newUser.value
   proxyVisible.value = false
   emit('changed', newUser.value)
   newUser.value = ''

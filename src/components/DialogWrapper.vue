@@ -11,16 +11,16 @@ doneSignal.add(() => {
 const visible = computed(() => visibleModal.value)
 
 const listeners = {
-  ok: () => {
-    visibleModal.value = false
+  click: () => {
+    visibleModal.value = true
   },
 }
 </script>
 
 <template>
   <div>
-    <div @click.stop.prevent="visibleModal = true">
-      <slot v-bind="{ visible, doneSignal }" />
+    <div>
+      <slot v-bind="{ visible, doneSignal, listeners }" />
     </div>
   </div>
 </template>

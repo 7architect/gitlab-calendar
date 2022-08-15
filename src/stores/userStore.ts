@@ -22,9 +22,13 @@ export const useUser = defineStore('users', {
       await router.push('/')
     },
     setUser(username: string) {
-      LogRocket.identify(username, { username })
+      LogRocket.identify(username)
       this.$patch({ username })
     },
   },
-  persist: true,
+  persist: {
+    afterRestore(context) {
+      LogRocket.identify(context.store.username)
+    },
+  },
 })

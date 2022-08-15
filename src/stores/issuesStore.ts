@@ -1,18 +1,18 @@
 import { defineStore } from 'pinia'
 import { useApolloClient } from '@vue/apollo-composable'
 import type { Dayjs } from 'dayjs'
-import type { IssueEdge } from '../../graphql'
 import type {
   CreateNoteMutation,
   CreateNoteMutationVariables,
+  IssueFragment,
   SearchIssuesQuery,
   SearchIssuesQueryVariables,
-} from '../../graphql-operations'
+} from '../../graphql'
 import { CreateNote, SearchIssues } from '../../graphql-operations'
 import { useUser } from '~/stores/userStore'
 
 interface IIssuesStore {
-  issues: IssueEdge[]
+  issues: IssueFragment[]
 }
 
 const client = useApolloClient().client
@@ -32,7 +32,7 @@ export const useIssues = defineStore('issues', {
         },
       })
 
-      return result.data?.createNote?.note?.url ?? null
+      return result.data?.createNote ?? null
     },
     async searchIssue(search: SearchIssuesQueryVariables['search']) {
       const result = await client.query<SearchIssuesQuery, SearchIssuesQueryVariables>({
@@ -44,10 +44,8 @@ export const useIssues = defineStore('issues', {
         },
       })
 
-      if (result.data.group?.issues?.edges) {
-        const edges = result.data.group.issues.edges
-        this.$patch({ issues: edges as IssueEdge[] })
-      }
+      if (result.data.group?.issues?.edges)
+        this.issues = result.data.group.issues.edges.map(edge => edge!.node!)
     },
   },
 })

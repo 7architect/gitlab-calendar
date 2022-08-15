@@ -26,7 +26,7 @@ const displayMode = computed({
 })
 
 const displayUser = computed({
-  get: () => (route.query.user as string) || user.username,
+  get: () => (route.query.user as string) || toRaw(user.username),
   set(user: string) {
     router.replace({ ...route, query: { ...route.query, user } })
   },
@@ -79,20 +79,31 @@ const indicator = h(LoadingOutlined, {
 
 const showIssues = ref(true)
 const showMrs = ref(true)
+
+const isNow = (date: Dayjs) => dayjs().date() === date.date()
 </script>
 
 <template>
   <change-user-dialog v-model:visible="changeUserVisibleModal" :loading="userLogs._loading" @changed="onUserChanged" />
 
   <a-page-header
-    ghost
     :title="`Calendar for ${displayMonth}`"
-    :sub-title="`@${user.username}`"
+    :sub-title="user.username !== displayUser ? `timelogs for @${displayUser}` : `@${displayUser}`"
     @back="user.logout"
   >
     <template #tags>
       <a-button size="small" type="outline" @click="changeUserVisibleModal = true">
         change user
+      </a-button>
+      <a-button
+        v-show="user.username !== displayUser"
+        size="small"
+        type="outline"
+        color="red"
+        ml-2
+        @click="displayUser = user.username"
+      >
+        reset user
       </a-button>
     </template>
 
@@ -106,21 +117,25 @@ const showMrs = ref(true)
     </a-row>
     <div my-4 />
     <a-col>
-      <label flex items-center mt-2>
-        <a-switch v-model:checked="showIssues" size="small" />
-        <a-typography-text ml-4>Show issues ({{ userLogs.onlyIssues.length }})</a-typography-text>
-        <div mx-2 mt="2px">
-          <a-badge status="success" />
-        </div>
-      </label>
+      <a-row>
+        <label flex items-center mt-2>
+          <a-switch v-model:checked="showIssues" size="small" />
+          <a-typography-text ml-4>Show issues ({{ userLogs.onlyIssues.length }})</a-typography-text>
+          <div mx-2 mt="2px">
+            <a-badge status="success" />
+          </div>
+        </label>
+      </a-row>
 
-      <label flex items-center mt-2>
-        <a-switch v-model:checked="showMrs" size="small" />
-        <a-typography-text ml-4>Show merge requests ({{ userLogs.onlyMergeRequests.length }})</a-typography-text>
-        <div mx-2 mt="2px">
-          <a-badge status="warning" />
-        </div>
-      </label>
+      <a-row>
+        <label flex items-center mt-2>
+          <a-switch v-model:checked="showMrs" size="small" />
+          <a-typography-text ml-4>Show merge requests ({{ userLogs.onlyMergeRequests.length }})</a-typography-text>
+          <div mx-2 mt="2px">
+            <a-badge status="warning" />
+          </div>
+        </label>
+      </a-row>
     </a-col>
   </a-page-header>
 
@@ -134,41 +149,58 @@ const showMrs = ref(true)
             </template>
             <template #dateFullCellRender="{ current }">
               <dialog-wrapper
-                h-auto border-t-2 border-gray-200 mx-2 py="8px" px="4px" class="group"
+                h-auto border-t-2 border-gray-200 mx-1 py="8px" px="4px" class="group"
                 transition duration-1000
-                hover="bg-blue-50 border-blue-500 duration-300!"
-                :class="{ 'bg-red-50! border-red-100!': ['Sa', 'Su'].includes(current.format('dd')) }"
+                hover="bg-gray-100 border-gray-400 duration-300!"
+                :class="{
+                  'bg-red-50! border-red-100!': ['Sa', 'Su'].includes(current.format('dd')),
+                  'bg-blue-50! border-blue-500!': isNow(current),
+                }"
               >
-                <template #default="{ visible, doneSignal }">
+                <template #default="{ visible, doneSignal, listeners }">
                   <create-timelog-note-dialog :visible="visible" :done-signal="doneSignal" :timelog-date="current" />
 
-                  <a-row mb-4>
-                    <a-col justify="center">
-                      <span v-if="userLogs.hoursOf(current, { range: 'day' })" ml-4>
-                        <a-tag
-                          :color="getHoursColor(userLogs.hoursOf(current, { range: 'day' }))"
-                        >
-                          {{ userLogs.hoursOf(current, { range: 'day' }) }}h
-                        </a-tag>
-                        <span class="text-sm underline mr-2">total</span>
-                      </span>
-                    </a-col>
+                  <a-popover trigger="hover">
+                    <template #content>
+                      <a p-1 block v-on="listeners">
+                        log time
+                      </a>
 
-                    <a-col flex="auto">
-                      {{ current.format('DD') }}
-                    </a-col>
-                  </a-row>
-
-                  <perfect-scrollbar v-if="userLogs.day(current)" style="height: 100px">
-                    <template v-for="(log, i) of userLogs.day(current)" :key="i">
-                      <div v-show="showIssues && !!log.node.issue">
-                        <log-item :item="log.node" />
-                      </div>
-                      <div v-show="showMrs && !!log.node.mergeRequest">
-                        <log-item :item="log.node" />
-                      </div>
+                      <a p-1 disabled block>
+                        show history
+                      </a>
                     </template>
-                  </perfect-scrollbar>
+
+                    <div @click.stop.prevent>
+                      <a-row mb-4>
+                        <a-col justify="center">
+                          <span v-if="userLogs.hoursOf(current, { range: 'day' })" ml-4>
+                            <a-tag
+                              :color="getHoursColor(userLogs.hoursOf(current, { range: 'day' }))"
+                            >
+                              {{ userLogs.hoursOf(current, { range: 'day' }) }}h
+                            </a-tag>
+                            <span class="text-sm underline mr-2">total</span>
+                          </span>
+                        </a-col>
+
+                        <a-col flex="auto">
+                          {{ current.format('DD') }}
+                        </a-col>
+                      </a-row>
+
+                      <perfect-scrollbar v-if="userLogs.day(current)" style="height: 100px">
+                        <template v-for="(log, i) of userLogs.day(current)" :key="i">
+                          <div v-show="showIssues && !!log.node.issue">
+                            <log-item :item="log.node" />
+                          </div>
+                          <div v-show="showMrs && !!log.node.mergeRequest">
+                            <log-item :item="log.node" />
+                          </div>
+                        </template>
+                      </perfect-scrollbar>
+                    </div>
+                  </a-popover>
                 </template>
               </dialog-wrapper>
             </template>

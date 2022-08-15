@@ -5,8 +5,16 @@ generates:
   ./graphql.d.ts:
     plugins:
       - typescript
+      - typescript-operations
+    config:
+#      preResolveTypes: false
+      avoidOptionals: true
+#      skipTypeNameForRoot: true
+      exportFragmentSpreadSubTypes: true
+      mergeFragmentTypes: true
+      skipTypename: true
+      dedupeFragments: true
 
   ./graphql-operations.ts:
     plugins:
-      - typescript-operations
       - typescript-document-nodes
