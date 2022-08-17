@@ -12,6 +12,10 @@ const props = defineProps<{
   timelogDate: Dayjs
 }>()
 
+const emit = defineEmits<{
+  (e: 'done', value: Dayjs): void
+}>()
+
 const data = reactive<{
   date: Dayjs
   issue: string | null
@@ -72,9 +76,9 @@ const handleOk = async () => {
       noteUrl.value = timelogUrl.note.url
 
     sent.value = true
+    emit('done', data.date)
   }
   catch (e) {
-
   }
   finally {
     confirmLoading.value = false

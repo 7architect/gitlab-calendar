@@ -1,4 +1,4 @@
-<script setup lang="ts" xmlns:hover="http://www.w3.org/1999/xhtml">
+<script setup lang="ts">
 import type { Dayjs, OpUnitType } from 'dayjs'
 import dayjs from 'dayjs'
 import { useRoute, useRouter } from 'vue-router'
@@ -38,16 +38,16 @@ const fetchVariables = computed(() => ({
   start: formatDate(displayDate.value.startOf(displayMode.value)),
   end: formatDate(displayDate.value.endOf(displayMode.value)),
   user: displayUser.value,
+  after: null,
 }))
 
 const userLogs = userLogsStore()
-userLogs.fetchLogsAggregated(fetchVariables.value)
+const update = () => userLogs.fetchLogsAggregated(fetchVariables.value)
+
+update()
+watch(fetchVariables, update)
 
 const totalSpent = computed(() => userLogs.hoursOf(displayDate.value, { range: displayMode.value }))
-
-watch(fetchVariables, () => {
-  userLogs.fetchLogsAggregated(fetchVariables.value)
-})
 
 const getHoursColor = (hours: number) => {
   if (hours < 8)
@@ -158,7 +158,12 @@ const isNow = (date: Dayjs) => dayjs().date() === date.date()
                 }"
               >
                 <template #default="{ visible, doneSignal, listeners }">
-                  <create-timelog-note-dialog :visible="visible" :done-signal="doneSignal" :timelog-date="current" />
+                  <create-timelog-note-dialog
+                    :visible="visible"
+                    :done-signal="doneSignal"
+                    :timelog-date="current"
+                    @done="update"
+                  />
 
                   <a-popover trigger="hover">
                     <template #content>
