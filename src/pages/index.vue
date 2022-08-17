@@ -2,13 +2,16 @@
 import { useUser } from '~/stores/userStore'
 
 const user = useUser()
-const username = ref(user.username)
 
 const router = useRouter()
-const go = () => {
-  if (user.token && username.value) {
-    user.setUser(username.value)
-    router.push('/calendar')
+const go = async () => {
+  try {
+    const username = await user.getUser()
+    if (username)
+      await router.push('/calendar')
+  }
+  catch (e) {
+    console.error(e)
   }
 }
 </script>
@@ -30,10 +33,10 @@ const go = () => {
       w="320px"
     />
 
-    <users-autocomplete v-if="user.token" v-model="username" />
+    <!--    <users-autocomplete v-if="user.token" v-model="username" /> -->
 
     <a-button
-      :disabled="!(user.token && username)"
+      :disabled="!user.token"
       class="mt-2"
       type="primary"
       @click="go"

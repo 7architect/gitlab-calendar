@@ -2,9 +2,8 @@ import { defineStore } from 'pinia'
 import { useApolloClient } from '@vue/apollo-composable'
 import type { Dayjs, OpUnitType } from 'dayjs'
 import dayjs from 'dayjs'
-import type { LogsQuery, LogsQueryVariables } from '../../graphql-operations'
 import { Logs } from '../../graphql-operations'
-import type { TimelogEdge } from '../../graphql'
+import type { LogsQuery, LogsQueryVariables, TimelogEdge } from '../../graphql'
 import type { AsyncStore } from '~/stores/stores'
 
 export interface UserLogsState extends AsyncStore {
@@ -15,8 +14,13 @@ interface logFilter { issues: boolean; mrs: boolean }
 
 const client = useApolloClient().client
 
-const fetchTimeLogs = async (variables: LogsQueryVariables) => {
-  const result = await client.query<LogsQuery, LogsQueryVariables>({ query: Logs, variables, fetchPolicy: 'network-only' })
+const fetchTimeLogs = async (variables: { start: string; end: string; user: string; after: string | null }) => {
+  const result = await client.query<LogsQuery, LogsQueryVariables>({
+    query: Logs,
+    variables,
+    fetchPolicy: 'network-only',
+  })
+
   return result.data.timelogs
 }
 
@@ -71,7 +75,7 @@ export const userLogsStore = defineStore('userLogs', {
     },
   },
   actions: {
-    async fetchLogsAggregated(variables: LogsQueryVariables) {
+    async fetchLogsAggregated(variables: { start: string; end: string; user: string; after: string | null }) {
       this._loading = true
       const timelogs = await fetchTimeLogs(variables)
 
@@ -86,7 +90,7 @@ export const userLogsStore = defineStore('userLogs', {
       while (pageInfo.hasNextPage) {
         const moreTimelogs = await fetchTimeLogs({
           ...variables,
-          after: lastCursor,
+          after: lastCursor!,
         })
 
         if (moreTimelogs?.edges) {
