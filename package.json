@@ -21,7 +21,7 @@
     "ant-design-vue": "3.2.11",
     "apollo3-cache-persist": "0.14.1",
     "dayjs": "1.11.5",
-    "graphql": "16.5.0",
+    "graphql": "16.6.0",
     "graphql-tag": "2.12.6",
     "lodash.debounce": "4.0.8",
     "lodash.merge": "4.6.2",
