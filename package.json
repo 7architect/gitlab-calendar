@@ -42,7 +42,7 @@
     "@unocss/reset": "0.45.13",
     "@vitejs/plugin-vue": "3.0.3",
     "@vue/test-utils": "2.0.2",
-    "eslint": "8.22.0",
+    "eslint": "8.23.0",
     "jsdom": "20.0.0",
     "pnpm": "7.9.5",
     "taze": "0.7.6",
