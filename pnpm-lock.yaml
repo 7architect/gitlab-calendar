@@ -30,7 +30,7 @@ specifiers:
   pinia-plugin-persistedstate: 2.1.1
   pnpm: 7.9.5
   signals: 1.0.0
-  taze: 0.7.6
+  taze: 0.8.0
   typescript: 4.8.2
   unocss: 0.45.13
   unplugin-auto-import: 0.11.2
@@ -79,7 +79,7 @@ devDependencies:
   eslint: 8.23.0
   jsdom: 20.0.0
   pnpm: 7.9.5
-  taze: 0.7.6
+  taze: 0.8.0
   typescript: 4.8.2
   unocss: 0.45.13_vite@3.0.9
   unplugin-auto-import: 0.11.2_jfxn32i2eq37u3jpfk3zc3f4hy
@@ -7173,8 +7173,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /taze/0.7.6:
-    resolution: {integrity: sha512-k+NHotCNJ2vD1vAY2fyMZJQP27Fr6gbUBGyX12oSegbfolZk0nQ/WxAdwZM4s+rlIvguouvhdcClzcviQTCikQ==}
+  /taze/0.8.0:
+    resolution: {integrity: sha512-3FWGegvt1JB+qfBPEr/9sBhGc2VQmwrGFacvfCllmm+Raw9iDHlWSy/CyIJU+6FsfUrTIhF5X9xT2sUNh4nz8Q==}
     hasBin: true
     dependencies:
       '@antfu/ni': 0.16.3
@@ -7183,6 +7183,7 @@ packages:
       pacote: 13.6.1
       prompts: 2.4.2
       semver: 7.3.7
+      unconfig: 0.3.5
       yargs: 17.5.1
     transitivePeerDependencies:
       - bluebird
