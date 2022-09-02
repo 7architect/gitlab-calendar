@@ -16,7 +16,7 @@ specifiers:
   '@vue/apollo-composable': 4.0.0-alpha.19
   '@vue/test-utils': 2.0.2
   '@vueuse/core': 9.1.1
-  ant-design-vue: 3.2.11
+  ant-design-vue: 3.2.12
   apollo3-cache-persist: 0.14.1
   dayjs: 1.11.5
   eslint: 8.23.0
@@ -52,7 +52,7 @@ dependencies:
   '@graphql-codegen/typescript-operations': 2.5.3_graphql@16.6.0
   '@vue/apollo-composable': 4.0.0-alpha.19_5uojy75trik7hxhdpq5lxyqimi
   '@vueuse/core': 9.1.1_vue@3.2.38
-  ant-design-vue: 3.2.11_vue@3.2.38
+  ant-design-vue: 3.2.12_vue@3.2.38
   apollo3-cache-persist: 0.14.1_@apollo+client@3.6.9
   dayjs: 1.11.5
   graphql: 16.6.0
@@ -2288,8 +2288,8 @@ packages:
     dependencies:
       color-convert: 2.0.1
 
-  /ant-design-vue/3.2.11_vue@3.2.38:
-    resolution: {integrity: sha512-QKCAcOY5EJF0PepiVGA4X5PzUetYUvG5qALmA+2TON40pc2+brOEiVTwr3kjF9N+f7q4MpyiLPu4pIErwoajOQ==}
+  /ant-design-vue/3.2.12_vue@3.2.38:
+    resolution: {integrity: sha512-CPsoWJ3t+sqq/EPINPXb4fC5/9iKkUdYOfK9M9kLKbXlRN3MAoVwWUbaFnUqc+ngtbEpn/d69hTF/Eh7MeWMhQ==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       vue: '>=3.2.0'
