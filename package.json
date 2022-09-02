@@ -18,7 +18,7 @@
     "@graphql-codegen/typescript-operations": "2.5.3",
     "@vue/apollo-composable": "4.0.0-alpha.19",
     "@vueuse/core": "9.1.1",
-    "ant-design-vue": "3.2.11",
+    "ant-design-vue": "3.2.12",
     "apollo3-cache-persist": "0.14.1",
     "dayjs": "1.11.5",
     "graphql": "16.6.0",
