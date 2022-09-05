@@ -28,7 +28,7 @@ specifiers:
   logrocket: 3.0.1
   pinia: 2.0.21
   pinia-plugin-persistedstate: 2.1.1
-  pnpm: 7.10.0
+  pnpm: 7.11.0
   signals: 1.0.0
   taze: 0.8.0
   typescript: 4.8.2
@@ -78,7 +78,7 @@ devDependencies:
   '@vue/test-utils': 2.0.2_vue@3.2.38
   eslint: 8.23.0
   jsdom: 20.0.0
-  pnpm: 7.10.0
+  pnpm: 7.11.0
   taze: 0.8.0
   typescript: 4.8.2
   unocss: 0.45.15_vite@3.1.0
@@ -6264,8 +6264,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /pnpm/7.10.0:
-    resolution: {integrity: sha512-DGjcJ3OAHRtyqZJek6OzqLir7hqNaayX4FxMKSXlnpgQRVZsU2jtym/FlR1PS4VmSy+p1Ps/aPz62iHNG0eReQ==}
+  /pnpm/7.11.0:
+    resolution: {integrity: sha512-cxh4TfCE8L4ZbLBN72kTGKTYP7X08nrIzoQ2rQCKihAcIHAdNIgsk4bEJyE1xHjE+bNJt9skwr7aJv3LpvUawQ==}
     engines: {node: '>=14.6'}
     hasBin: true
     dev: true
