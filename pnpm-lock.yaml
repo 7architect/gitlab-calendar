@@ -38,7 +38,7 @@ specifiers:
   vite: 3.0.9
   vite-plugin-graphql-codegen: 2.3.0
   vite-plugin-pages: 0.26.0
-  vitest: 0.23.0
+  vitest: 0.23.1
   vue: 3.2.38
   vue-router: 4.1.5
   vue-tsc: 0.40.7
@@ -87,7 +87,7 @@ devDependencies:
   vite: 3.0.9
   vite-plugin-graphql-codegen: 2.3.0_33wlr5oohh5qmlyuytrkonxzvi
   vite-plugin-pages: 0.26.0_vite@3.0.9
-  vitest: 0.23.0_jsdom@20.0.0
+  vitest: 0.23.1_jsdom@20.0.0
   vue-tsc: 0.40.7_typescript@4.8.2
 
 packages:
@@ -7774,8 +7774,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.23.0_jsdom@20.0.0:
-    resolution: {integrity: sha512-I3ctlfiXYprA2tID1qP+m6pmgmKx3HYfRe66MetGOHKCHLY7hz74ihiwIEtN7LReJgF3U5cM735iYPkn/Go1iQ==}
+  /vitest/0.23.1_jsdom@20.0.0:
+    resolution: {integrity: sha512-kn9pG+h6VA3yj/xRvwgLKEd33rOlzMqJEg3tl5HSm3WUPlkY1Lr1FK8RN1uIqVKvFxmz6HGU3EQW+xW2kazRkQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
