@@ -38,7 +38,7 @@ specifiers:
   vite: 3.1.2
   vite-plugin-graphql-codegen: 2.3.0
   vite-plugin-pages: 0.26.0
-  vitest: 0.23.2
+  vitest: 0.23.4
   vue: 3.2.39
   vue-router: 4.1.5
   vue-tsc: 0.40.13
@@ -87,7 +87,7 @@ devDependencies:
   vite: 3.1.2
   vite-plugin-graphql-codegen: 2.3.0_nct5eaqgpdhmtbebimk73ps6vu
   vite-plugin-pages: 0.26.0_vite@3.1.2
-  vitest: 0.23.2_jsdom@20.0.0
+  vitest: 0.23.4_jsdom@20.0.0
   vue-tsc: 0.40.13_typescript@4.8.3
 
 packages:
@@ -7167,8 +7167,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /strip-literal/0.4.0:
-    resolution: {integrity: sha512-ql/sBDoJOybTKSIOWrrh8kgUEMjXMwRAkZTD0EwiwxQH/6tTPkZvMIEjp0CRlpi6V5FMiJyvxeRkEi1KrGISoA==}
+  /strip-literal/0.4.2:
+    resolution: {integrity: sha512-pv48ybn4iE1O9RLgCAN0iU4Xv7RlBTiit6DKmMiErbs9x1wH6vXBs45tWc0H5wUIF6TLTrKweqkmYF/iraQKNw==}
     dependencies:
       acorn: 8.8.0
     dev: true
@@ -7506,7 +7506,7 @@ packages:
       mlly: 0.5.7
       pathe: 0.3.3
       scule: 0.3.2
-      strip-literal: 0.4.0
+      strip-literal: 0.4.2
       unplugin: 0.9.5_vite@3.1.2
     transitivePeerDependencies:
       - esbuild
@@ -7813,8 +7813,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.23.2_jsdom@20.0.0:
-    resolution: {integrity: sha512-kTBKp3ROPDkYC+x2zWt4znkDtnT08W1FQ6ngRFuqxpBGNuNVS+eWZKfffr8y2JGvEzZ9EzMAOcNaiqMj/FZqMw==}
+  /vitest/0.23.4_jsdom@20.0.0:
+    resolution: {integrity: sha512-iukBNWqQAv8EKDBUNntspLp9SfpaVFbmzmM0sNcnTxASQZMzRw3PsM6DMlsHiI+I6GeO5/sYDg3ecpC+SNFLrQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -7842,7 +7842,7 @@ packages:
       debug: 4.3.4
       jsdom: 20.0.0
       local-pkg: 0.4.2
-      strip-literal: 0.4.0
+      strip-literal: 0.4.2
       tinybench: 2.1.5
       tinypool: 0.3.0
       tinyspy: 1.0.2
