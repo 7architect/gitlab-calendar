@@ -30,7 +30,7 @@ specifiers:
   pinia-plugin-persistedstate: 2.2.0
   pnpm: 7.12.1
   signals: 1.0.0
-  taze: 0.8.0
+  taze: 0.8.1
   typescript: 4.8.3
   unocss: 0.45.22
   unplugin-auto-import: 0.11.2
@@ -79,7 +79,7 @@ devDependencies:
   eslint: 8.23.1
   jsdom: 20.0.0
   pnpm: 7.12.1
-  taze: 0.8.0
+  taze: 0.8.1
   typescript: 4.8.3
   unocss: 0.45.22_vite@3.1.3
   unplugin-auto-import: 0.11.2_ddncce744ormlo74xpe4fre3qq
@@ -211,8 +211,8 @@ packages:
       find-up: 5.0.0
     dev: true
 
-  /@antfu/ni/0.16.3:
-    resolution: {integrity: sha512-/C1N/hORSJp1qJHr4oRqQzmWPqB6S42T4HV4dWhXOllPJkcqQA/L40U55Oc7Gq4Gm9pLeCNZn7YYU1kUK2Ekpg==}
+  /@antfu/ni/0.18.0:
+    resolution: {integrity: sha512-D0eek5EV8wOUpZNVAs/mPyeC5TMWFXqchqCyPiR6Lj5FgmSJw0EpFLqAczHX0O5+Jc07N7NBwBip85Gi1MBJnA==}
     hasBin: true
     dev: true
 
@@ -3248,8 +3248,8 @@ packages:
     resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==}
     engines: {node: '>=8'}
 
-  /detect-indent/7.0.0:
-    resolution: {integrity: sha512-/6kJlmVv6RDFPqaHC/ZDcU8bblYcoph2dUQ3kB47QqhkUEqXe3VZPELK9BaEMrC73qu+wn0AQ7iSteceN+yuMw==}
+  /detect-indent/7.0.1:
+    resolution: {integrity: sha512-Mc7QhQ8s+cLrnUfU/Ji94vG/r8M26m8f++vyres4ZoojaRDpZ1eSIh/EpzLNwlWuvzSZ3UbDFspjFvTDXe6e/g==}
     engines: {node: '>=12.20'}
     dev: true
 
@@ -7152,17 +7152,17 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /taze/0.8.0:
-    resolution: {integrity: sha512-3FWGegvt1JB+qfBPEr/9sBhGc2VQmwrGFacvfCllmm+Raw9iDHlWSy/CyIJU+6FsfUrTIhF5X9xT2sUNh4nz8Q==}
+  /taze/0.8.1:
+    resolution: {integrity: sha512-W2ZOGYiH57GFM38gBVE1pMV3TDExuqwqETdWh8xGeAOMMWwSUt6NWZnHw7c1AMhaC8abCikjXe1s2H43h5CieA==}
     hasBin: true
     dependencies:
-      '@antfu/ni': 0.16.3
-      detect-indent: 7.0.0
+      '@antfu/ni': 0.18.0
+      detect-indent: 7.0.1
       libnpmconfig: 1.2.1
       pacote: 13.6.1
       prompts: 2.4.2
       semver: 7.3.7
-      unconfig: 0.3.5
+      unconfig: 0.3.6
       yargs: 17.5.1
     transitivePeerDependencies:
       - bluebird
@@ -7381,14 +7381,6 @@ packages:
     resolution: {integrity: sha512-eXL4nmJT7oCpkZsHZUOJo8hcX3GbsiDOa0Qu9F646fi8dT3XuSVopVqAcEiVzSKKH7UoDti23wNX3qGFxcW5Qg==}
     engines: {node: '>=0.10.0'}
     dev: false
-
-  /unconfig/0.3.5:
-    resolution: {integrity: sha512-YMnPPUSfW0pT4Zzy4inM8tRHJZmhH+KcuFW/3qxkLKPhswEw18gQYe1jt57jY6ctFB0fnpiCpQ2Jtkbg4y/IPA==}
-    dependencies:
-      '@antfu/utils': 0.5.2
-      defu: 6.1.0
-      jiti: 1.14.0
-    dev: true
 
   /unconfig/0.3.6:
     resolution: {integrity: sha512-JWefWyjLrDAbzs30sFkzcE9YpvAhN9+UPMZBwnNUmaY9X7QhI+wCGP4hoEWfZDzvkP+WIaZDPcMUJjarpxFvKg==}
