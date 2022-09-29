@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@ant-design/icons-vue': 6.1.0
   '@antfu/eslint-config': 0.27.0
-  '@apollo/client': 3.6.9
+  '@apollo/client': 3.6.10
   '@graphql-codegen/cli': 2.13.1
   '@graphql-codegen/typescript-document-nodes': 2.3.3
   '@graphql-codegen/typescript-operations': 2.5.3
@@ -46,14 +46,14 @@ specifiers:
 
 dependencies:
   '@ant-design/icons-vue': 6.1.0_vue@3.2.40
-  '@apollo/client': 3.6.9_graphql@16.6.0
+  '@apollo/client': 3.6.10_graphql@16.6.0
   '@graphql-codegen/cli': 2.13.1_dmakwg7hqxa2wxizwbtxe3ak3q
   '@graphql-codegen/typescript-document-nodes': 2.3.3_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.3_graphql@16.6.0
-  '@vue/apollo-composable': 4.0.0-alpha.19_w32skffv7t4yty4b5mdz6du3h4
+  '@vue/apollo-composable': 4.0.0-alpha.19_apfehglvgdueldxnzlkrc4odce
   '@vueuse/core': 9.3.0_vue@3.2.40
   ant-design-vue: 3.2.12_vue@3.2.40
-  apollo3-cache-persist: 0.14.1_@apollo+client@3.6.9
+  apollo3-cache-persist: 0.14.1_@apollo+client@3.6.10
   dayjs: 1.11.5
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
@@ -220,23 +220,26 @@ packages:
     resolution: {integrity: sha512-CQkeV+oJxUazwjlHD0/3ZD08QWKuGQkhnrKo3e6ly5pd48VUpXbb77q0xMU4+vc2CkJnDS02Eq/M9ugyX20XZA==}
     dev: true
 
-  /@apollo/client/3.6.9_graphql@16.6.0:
-    resolution: {integrity: sha512-Y1yu8qa2YeaCUBVuw08x8NHenFi0sw2I3KCu7Kw9mDSu86HmmtHJkCAifKVrN2iPgDTW/BbP3EpSV8/EQCcxZA==}
+  /@apollo/client/3.6.10_graphql@16.6.0:
+    resolution: {integrity: sha512-zow8+Z7Wz8OeH+8bhIxqPtqqXY87APoUbXlaXD/rgs3O9ijSyHSbUt3E4DnkLNP9q3+/OsRWY+Mx+WxkQQ4oig==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
       subscriptions-transport-ws: ^0.9.0 || ^0.11.0
     peerDependenciesMeta:
       graphql-ws:
         optional: true
       react:
         optional: true
+      react-dom:
+        optional: true
       subscriptions-transport-ws:
         optional: true
     dependencies:
       '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
-      '@wry/context': 0.6.1
+      '@wry/context': 0.7.0
       '@wry/equality': 0.5.2
       '@wry/trie': 0.3.1
       graphql: 16.6.0
@@ -1989,7 +1992,7 @@ packages:
       '@volar/vue-language-core': 0.40.13
     dev: true
 
-  /@vue/apollo-composable/4.0.0-alpha.19_w32skffv7t4yty4b5mdz6du3h4:
+  /@vue/apollo-composable/4.0.0-alpha.19_apfehglvgdueldxnzlkrc4odce:
     resolution: {integrity: sha512-bxFjzV/j8j3kzWcG4iX8z4JnidTKjQytmVL2tJWRdjeKZbfZDV9nVr/XBVPP75+iR5ckZe6EKinDKkjnYFKhlg==}
     peerDependencies:
       '@apollo/client': ^3.4.13
@@ -2000,7 +2003,7 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      '@apollo/client': 3.6.9_graphql@16.6.0
+      '@apollo/client': 3.6.10_graphql@16.6.0
       graphql: 16.6.0
       throttle-debounce: 3.0.1
       ts-essentials: 9.2.0_typescript@4.8.4
@@ -2164,6 +2167,13 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /@wry/context/0.7.0:
+    resolution: {integrity: sha512-LcDAiYWRtwAoSOArfk7cuYvFXytxfVrdX7yxoUmK7pPITLk5jYh2F8knCwS7LjgYL8u1eidPlKKV6Ikqq0ODqQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
   /@wry/equality/0.5.2:
     resolution: {integrity: sha512-oVMxbUXL48EV/C0/M7gLVsoK6qRHPS85x8zECofEZOVvxGmIPLA9o5Z27cc2PoAyZz1S2VoM2A7FLAnpfGlneA==}
     engines: {node: '>=8'}
@@ -2321,12 +2331,12 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  /apollo3-cache-persist/0.14.1_@apollo+client@3.6.9:
+  /apollo3-cache-persist/0.14.1_@apollo+client@3.6.10:
     resolution: {integrity: sha512-p/jNzN/MmSd0TmY7/ts0B3qi0SdQ3w9yNLQdKqB3GGb9xATUlAum2v4hSrTeWd/DZKK2Z7Xg5kFXTH6nNVnKSQ==}
     peerDependencies:
       '@apollo/client': ^3.2.5
     dependencies:
-      '@apollo/client': 3.6.9_graphql@16.6.0
+      '@apollo/client': 3.6.10_graphql@16.6.0
     dev: false
 
   /aproba/2.0.0:
