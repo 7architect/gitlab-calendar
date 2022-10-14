@@ -36,7 +36,7 @@ specifiers:
   unplugin-auto-import: 0.11.2
   unplugin-vue-components: 0.22.8
   vite: 3.1.8
-  vite-plugin-graphql-codegen: 2.3.0
+  vite-plugin-graphql-codegen: 2.3.1
   vite-plugin-pages: 0.26.0
   vitest: 0.24.3
   vue: 3.2.41
@@ -85,7 +85,7 @@ devDependencies:
   unplugin-auto-import: 0.11.2_xprgaq42dappzfhggpxgvdf43y
   unplugin-vue-components: 0.22.8_vue@3.2.41
   vite: 3.1.8
-  vite-plugin-graphql-codegen: 2.3.0_diq3ed2k4twjl4q5l3f7we5viy
+  vite-plugin-graphql-codegen: 2.3.1_diq3ed2k4twjl4q5l3f7we5viy
   vite-plugin-pages: 0.26.0_vite@3.1.8
   vitest: 0.24.3_jsdom@20.0.1
   vue-tsc: 0.40.13_typescript@4.8.4
@@ -7681,8 +7681,8 @@ packages:
     resolution: {integrity: sha512-/juG65kTL4Cy2su4P8HjtkTxk6VmJDiOPBufWniqQ6wknac6jNiXS9vU+hO3wgusiyqWlzTbVHi0dyJqRONg3w==}
     dev: false
 
-  /vite-plugin-graphql-codegen/2.3.0_diq3ed2k4twjl4q5l3f7we5viy:
-    resolution: {integrity: sha512-fyItfQeCC4r2tEeq8CQOFrLasfacgQHPp/lSiDWoFbrgYOtKVZlsP0b+3phOjyQ7uEtFbqh3XZYT8rXU1a5vpw==}
+  /vite-plugin-graphql-codegen/2.3.1_diq3ed2k4twjl4q5l3f7we5viy:
+    resolution: {integrity: sha512-SybLQaS+7dKTtHlvDaogemCMuDulziaS72BQO3cwzjUOtO+7uqkfuwgfMg+BSLJjol4oxP38iOQLKw6zSpNhtQ==}
     peerDependencies:
       '@graphql-codegen/cli': ^1.0.0 || ^2.0.0
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
