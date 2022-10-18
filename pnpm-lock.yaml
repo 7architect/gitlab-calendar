@@ -30,7 +30,7 @@ specifiers:
   pinia-plugin-persistedstate: 2.3.0
   pnpm: 7.13.5
   signals: 1.0.0
-  taze: 0.8.2
+  taze: 0.8.3
   typescript: 4.8.4
   unocss: 0.45.29
   unplugin-auto-import: 0.11.2
@@ -79,7 +79,7 @@ devDependencies:
   eslint: 8.25.0
   jsdom: 20.0.1
   pnpm: 7.13.5
-  taze: 0.8.2
+  taze: 0.8.3
   typescript: 4.8.4
   unocss: 0.45.29_vite@3.1.8
   unplugin-auto-import: 0.11.2_zqi2xhr3ahaiw6pxzygjgkwf7q
@@ -7185,8 +7185,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /taze/0.8.2:
-    resolution: {integrity: sha512-ADay3jM3XYgyhu8zEcv64ETpGZ3Oi2uiyxfrDfMi4sTf5znu4Zn+ytK67YLMtvRNzwn9palM7TT5xYBQxJdvwA==}
+  /taze/0.8.3:
+    resolution: {integrity: sha512-BmBapLxVeZ7YmFBEkP8gNrcmfcJ9xaNZ1bSbNtvC4hNVs9c2YtfNdhMLA8KwcAvKa4p8CTyKb2DUh8a/z+G1Hg==}
     hasBin: true
     dependencies:
       '@antfu/ni': 0.18.0
@@ -7195,7 +7195,7 @@ packages:
       pacote: 13.6.1
       prompts: 2.4.2
       semver: 7.3.7
-      unconfig: 0.3.6
+      unconfig: 0.3.7
       yargs: 17.5.1
     transitivePeerDependencies:
       - bluebird
@@ -7415,14 +7415,6 @@ packages:
     resolution: {integrity: sha512-eXL4nmJT7oCpkZsHZUOJo8hcX3GbsiDOa0Qu9F646fi8dT3XuSVopVqAcEiVzSKKH7UoDti23wNX3qGFxcW5Qg==}
     engines: {node: '>=0.10.0'}
     dev: false
-
-  /unconfig/0.3.6:
-    resolution: {integrity: sha512-JWefWyjLrDAbzs30sFkzcE9YpvAhN9+UPMZBwnNUmaY9X7QhI+wCGP4hoEWfZDzvkP+WIaZDPcMUJjarpxFvKg==}
-    dependencies:
-      '@antfu/utils': 0.5.2
-      defu: 6.1.0
-      jiti: 1.16.0
-    dev: true
 
   /unconfig/0.3.7:
     resolution: {integrity: sha512-1589b7oGa8ILBYpta7TndM5mLHLzHUqBfhszeZxuUBrjO/RoQ52VGVWsS3w0C0GLNxO9RPmqkf6BmIvBApaRdA==}
