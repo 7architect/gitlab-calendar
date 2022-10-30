@@ -22,7 +22,7 @@ specifiers:
   eslint: 8.26.0
   graphql: 16.6.0
   graphql-tag: 2.12.6
-  jsdom: 20.0.1
+  jsdom: 20.0.2
   lodash.debounce: 4.0.8
   lodash.merge: 4.6.2
   logrocket: 3.0.1
@@ -77,7 +77,7 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.1+vue@3.2.41
   '@vue/test-utils': 2.2.1_vue@3.2.41
   eslint: 8.26.0
-  jsdom: 20.0.1
+  jsdom: 20.0.2
   pnpm: 7.14.1
   taze: 0.8.3
   typescript: 4.8.4
@@ -87,7 +87,7 @@ devDependencies:
   vite: 3.2.1
   vite-plugin-graphql-codegen: 2.3.1_j2rrtaz7j5iz6i6dmbyny5v7sa
   vite-plugin-pages: 0.27.1_vite@3.2.1
-  vitest: 0.24.3_jsdom@20.0.1
+  vitest: 0.24.3_jsdom@20.0.2
   vue-tsc: 0.40.13_typescript@4.8.4
 
 packages:
@@ -5079,8 +5079,8 @@ packages:
     dependencies:
       argparse: 2.0.1
 
-  /jsdom/20.0.1:
-    resolution: {integrity: sha512-pksjj7Rqoa+wdpkKcLzQRHhJCEE42qQhl/xLMUKHgoSejaKOdaXEAnqs6uDNwMl/fciHTzKeR8Wm8cw7N+g98A==}
+  /jsdom/20.0.2:
+    resolution: {integrity: sha512-AHWa+QO/cgRg4N+DsmHg1Y7xnz+8KU3EflM0LVDTdmrYOc1WWTSkOjtpUveQH+1Bqd5rtcVnb/DuxV/UjDO4rA==}
     engines: {node: '>=14'}
     peerDependencies:
       canvas: ^2.5.0
@@ -7746,7 +7746,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.24.3_jsdom@20.0.1:
+  /vitest/0.24.3_jsdom@20.0.2:
     resolution: {integrity: sha512-aM0auuPPgMSstWvr851hB74g/LKaKBzSxcG3da7ejfZbx08Y21JpZmbmDYrMTCGhVZKqTGwzcnLMwyfz2WzkhQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -7773,7 +7773,7 @@ packages:
       '@types/node': 18.11.7
       chai: 4.3.6
       debug: 4.3.4
-      jsdom: 20.0.1
+      jsdom: 20.0.2
       local-pkg: 0.4.2
       strip-literal: 0.4.2
       tinybench: 2.3.0
