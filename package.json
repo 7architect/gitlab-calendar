@@ -31,7 +31,7 @@
     "signals": "1.0.0",
     "vue": "3.2.41",
     "vue-router": "4.1.6",
-    "vue3-perfect-scrollbar": "1.6.0"
+    "vue3-perfect-scrollbar": "1.6.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "0.29.3",
