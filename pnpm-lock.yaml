@@ -8,7 +8,7 @@ specifiers:
   '@graphql-codegen/typescript-document-nodes': 2.3.6
   '@graphql-codegen/typescript-operations': 2.5.6
   '@iconify-json/carbon': 1.1.9
-  '@types/lodash': 4.14.187
+  '@types/lodash': 4.14.188
   '@types/node': 18.11.9
   '@types/signals': 1.0.1
   '@unocss/reset': 0.46.3
@@ -70,7 +70,7 @@ dependencies:
 devDependencies:
   '@antfu/eslint-config': 0.29.3_wyqvi574yv7oiwfeinomdzmc3m
   '@iconify-json/carbon': 1.1.9
-  '@types/lodash': 4.14.187
+  '@types/lodash': 4.14.188
   '@types/node': 18.11.9
   '@types/signals': 1.0.1
   '@unocss/reset': 0.46.3
@@ -1635,8 +1635,8 @@ packages:
     dependencies:
       '@types/node': 18.11.9
 
-  /@types/lodash/4.14.187:
-    resolution: {integrity: sha512-MrO/xLXCaUgZy3y96C/iOsaIqZSeupyTImKClHunL5GrmaiII2VwvWmLBu2hwa0Kp0sV19CsyjtrTc/Fx8rg/A==}
+  /@types/lodash/4.14.188:
+    resolution: {integrity: sha512-zmEmF5OIM3rb7SbLCFYoQhO4dGt2FRM9AMkxvA3LaADOF1n8in/zGJlWji9fmafLoNyz+FoL6FE0SLtGIArD7w==}
     dev: true
 
   /@types/mdast/3.0.10:
