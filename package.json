@@ -34,7 +34,7 @@
     "vue3-perfect-scrollbar": "1.6.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "0.29.4",
+    "@antfu/eslint-config": "0.30.1",
     "@iconify-json/carbon": "1.1.9",
     "@types/lodash": "4.14.188",
     "@types/node": "18.11.9",
