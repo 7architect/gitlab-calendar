@@ -27,7 +27,7 @@ specifiers:
   lodash.merge: 4.6.2
   logrocket: 3.0.1
   pinia: 2.0.23
-  pinia-plugin-persistedstate: 2.3.0
+  pinia-plugin-persistedstate: 2.4.0
   pnpm: 7.15.0
   signals: 1.0.0
   taze: 0.8.3
@@ -61,7 +61,7 @@ dependencies:
   lodash.merge: 4.6.2
   logrocket: 3.0.1
   pinia: 2.0.23_zwu2zepfy3m6u2gunxlolp35gi
-  pinia-plugin-persistedstate: 2.3.0_pinia@2.0.23
+  pinia-plugin-persistedstate: 2.4.0_pinia@2.0.23
   signals: 1.0.0
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
@@ -6042,8 +6042,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /pinia-plugin-persistedstate/2.3.0_pinia@2.0.23:
-    resolution: {integrity: sha512-K7vzt68Z3lbMDjb23Ki2vgHVBP2QFvjl7WNwzIwqY/DAkhSt8mi/z6bN/cXTst7fJjXWF0lC9NyxFKHfxWehuw==}
+  /pinia-plugin-persistedstate/2.4.0_pinia@2.0.23:
+    resolution: {integrity: sha512-bQcpv47jk3ISl+InuJWsFaS/K7pRZ97kfoD2WCf/suhnlLy48k3BnFM2tI6YZ1xMsDaPv4yOsaPuPAUuSmEO2Q==}
     peerDependencies:
       pinia: ^2.0.0
     peerDependenciesMeta:
