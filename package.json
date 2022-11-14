@@ -36,7 +36,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "0.30.1",
     "@iconify-json/carbon": "1.1.10",
-    "@types/lodash": "4.14.188",
+    "@types/lodash": "4.14.189",
     "@types/node": "18.11.9",
     "@types/signals": "1.0.1",
     "@unocss/reset": "0.46.5",
