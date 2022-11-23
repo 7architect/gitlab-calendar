@@ -26,7 +26,7 @@ specifiers:
   lodash.debounce: 4.0.8
   lodash.merge: 4.6.2
   logrocket: 3.0.1
-  pinia: 2.0.25
+  pinia: 2.0.26
   pinia-plugin-persistedstate: 2.4.0
   pnpm: 7.17.0
   signals: 1.0.0
@@ -60,8 +60,8 @@ dependencies:
   lodash.debounce: 4.0.8
   lodash.merge: 4.6.2
   logrocket: 3.0.1
-  pinia: 2.0.25_mgnvym7yiazkylwwogi5r767ue
-  pinia-plugin-persistedstate: 2.4.0_pinia@2.0.25
+  pinia: 2.0.26_mgnvym7yiazkylwwogi5r767ue
+  pinia-plugin-persistedstate: 2.4.0_pinia@2.0.26
   signals: 1.0.0
   vue: 3.2.45
   vue-router: 4.1.6_vue@3.2.45
@@ -6043,7 +6043,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /pinia-plugin-persistedstate/2.4.0_pinia@2.0.25:
+  /pinia-plugin-persistedstate/2.4.0_pinia@2.0.26:
     resolution: {integrity: sha512-bQcpv47jk3ISl+InuJWsFaS/K7pRZ97kfoD2WCf/suhnlLy48k3BnFM2tI6YZ1xMsDaPv4yOsaPuPAUuSmEO2Q==}
     peerDependencies:
       pinia: ^2.0.0
@@ -6051,11 +6051,11 @@ packages:
       pinia:
         optional: true
     dependencies:
-      pinia: 2.0.25_mgnvym7yiazkylwwogi5r767ue
+      pinia: 2.0.26_mgnvym7yiazkylwwogi5r767ue
     dev: false
 
-  /pinia/2.0.25_mgnvym7yiazkylwwogi5r767ue:
-    resolution: {integrity: sha512-3reAkjJ6bW2D5hZKRMS0c9rUbHVlsVyZd037xO0PJr2AuF/09RRSBnFLlJgmHF4Jx6dEoW/jZBOHTushY7IMlw==}
+  /pinia/2.0.26_mgnvym7yiazkylwwogi5r767ue:
+    resolution: {integrity: sha512-tSxZNUcMGxQOvKZRjPKXxd2+/2NZhRF/CoYVE/+K6uE/Z3v1Oi4fcQFpxu5nMB1dCchjXUZ+lz0tBxV5ntwmQQ==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
