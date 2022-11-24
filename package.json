@@ -13,7 +13,7 @@
   "dependencies": {
     "@ant-design/icons-vue": "6.1.0",
     "@apollo/client": "3.7.1",
-    "@graphql-codegen/cli": "2.13.12",
+    "@graphql-codegen/cli": "2.14.0",
     "@graphql-codegen/typescript-document-nodes": "2.3.7",
     "@graphql-codegen/typescript-operations": "2.5.7",
     "@vue/apollo-composable": "4.0.0-beta.1",
