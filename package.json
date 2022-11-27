@@ -26,7 +26,7 @@
     "lodash.debounce": "4.0.8",
     "lodash.merge": "4.6.2",
     "logrocket": "3.0.1",
-    "pinia": "2.0.26",
+    "pinia": "2.0.27",
     "pinia-plugin-persistedstate": "2.4.0",
     "signals": "1.0.0",
     "vue": "3.2.45",
