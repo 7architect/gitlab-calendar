@@ -11,7 +11,7 @@ specifiers:
   '@types/lodash': 4.14.190
   '@types/node': 18.11.9
   '@types/signals': 1.0.1
-  '@unocss/reset': 0.46.5
+  '@unocss/reset': 0.47.1
   '@vitejs/plugin-vue': 3.2.0
   '@vue/apollo-composable': 4.0.0-beta.1
   '@vue/test-utils': 2.2.4
@@ -73,7 +73,7 @@ devDependencies:
   '@types/lodash': 4.14.190
   '@types/node': 18.11.9
   '@types/signals': 1.0.1
-  '@unocss/reset': 0.46.5
+  '@unocss/reset': 0.47.1
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.4+vue@3.2.45
   '@vue/test-utils': 2.2.4_vue@3.2.45
   eslint: 8.28.0
@@ -1961,6 +1961,10 @@ packages:
 
   /@unocss/reset/0.46.5:
     resolution: {integrity: sha512-DU1sisNixEaUsnfDdbU+POaedJLKUtalHnOOce2Txxrcakf7M2/I5/9cRIXt5diVbPjIyoDPcx+7Gn8K0cTGqg==}
+    dev: true
+
+  /@unocss/reset/0.47.1:
+    resolution: {integrity: sha512-FIvtapdIZZ9cTOghj0o+FCk/OrTANEilp+NY5mqV09/HgxFZuk5cDAscxVAInJ4f4cb92RXNym5EnnqNhBSgvA==}
     dev: true
 
   /@unocss/scope/0.46.5:
