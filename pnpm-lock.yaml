@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@ant-design/icons-vue': 6.1.0
   '@antfu/eslint-config': 0.34.0
-  '@apollo/client': 3.7.2
+  '@apollo/client': 3.7.3
   '@graphql-codegen/cli': 2.16.1
   '@graphql-codegen/typescript-document-nodes': 2.3.10
   '@graphql-codegen/typescript-operations': 2.5.10
@@ -46,14 +46,14 @@ specifiers:
 
 dependencies:
   '@ant-design/icons-vue': 6.1.0_vue@3.2.45
-  '@apollo/client': 3.7.2_graphql@16.6.0
+  '@apollo/client': 3.7.3_graphql@16.6.0
   '@graphql-codegen/cli': 2.16.1_xk2pgzz2sjis7tz53sqgaajd3q
   '@graphql-codegen/typescript-document-nodes': 2.3.10_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.10_graphql@16.6.0
-  '@vue/apollo-composable': 4.0.0-beta.1_7tqd7hok7mlauslwvci65t4g2e
+  '@vue/apollo-composable': 4.0.0-beta.1_m4vwnnriauwgiqqddnonkd4nuq
   '@vueuse/core': 9.6.0_vue@3.2.45
   ant-design-vue: 3.2.15_vue@3.2.45
-  apollo3-cache-persist: 0.14.1_@apollo+client@3.7.2
+  apollo3-cache-persist: 0.14.1_@apollo+client@3.7.3
   dayjs: 1.11.7
   graphql: 16.6.0
   graphql-tag: 2.12.6_graphql@16.6.0
@@ -228,8 +228,8 @@ packages:
     resolution: {integrity: sha512-vy9fM3pIxZmX07dL+VX1aZe7ynZ+YyB0jY+jE6r3hOK6GNY2t6W8rzpFC4tgpbXUYABkFQwgJq2XYXlxbXAI0g==}
     dev: true
 
-  /@apollo/client/3.7.2_graphql@16.6.0:
-    resolution: {integrity: sha512-ohAIpXl3mTa1Fd3GT/K37VwQJfTIuuJRp4aOlJ4q/hlx0Wxh+RqDrbn0awtVCOdhGDQN+CQQmVzIqFKn6GziXQ==}
+  /@apollo/client/3.7.3_graphql@16.6.0:
+    resolution: {integrity: sha512-nzZ6d6a4flLpm3pZOGpuAUxLlp9heob7QcCkyIqZlCLvciUibgufRfYTwfkWCc4NaGHGSZyodzvfr79H6oUwGQ==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5
@@ -2070,7 +2070,7 @@ packages:
       '@volar/vue-language-core': 1.0.13
     dev: true
 
-  /@vue/apollo-composable/4.0.0-beta.1_7tqd7hok7mlauslwvci65t4g2e:
+  /@vue/apollo-composable/4.0.0-beta.1_m4vwnnriauwgiqqddnonkd4nuq:
     resolution: {integrity: sha512-WjyePUFYft7dZMNrO63DuP5bsl1AO1SKhfy688r2HXlyrCQAxvfRXOiPqnPzhmRn7kyWTKfrwwhkFJfnSq7vyA==}
     peerDependencies:
       '@apollo/client': ^3.4.13
@@ -2081,7 +2081,7 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      '@apollo/client': 3.7.2_graphql@16.6.0
+      '@apollo/client': 3.7.3_graphql@16.6.0
       graphql: 16.6.0
       throttle-debounce: 3.0.1
       ts-essentials: 9.2.0_typescript@4.9.4
@@ -2388,12 +2388,12 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  /apollo3-cache-persist/0.14.1_@apollo+client@3.7.2:
+  /apollo3-cache-persist/0.14.1_@apollo+client@3.7.3:
     resolution: {integrity: sha512-p/jNzN/MmSd0TmY7/ts0B3qi0SdQ3w9yNLQdKqB3GGb9xATUlAum2v4hSrTeWd/DZKK2Z7Xg5kFXTH6nNVnKSQ==}
     peerDependencies:
       '@apollo/client': ^3.2.5
     dependencies:
-      '@apollo/client': 3.7.2_graphql@16.6.0
+      '@apollo/client': 3.7.3_graphql@16.6.0
     dev: false
 
   /aproba/2.0.0:
