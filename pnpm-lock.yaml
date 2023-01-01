@@ -7,7 +7,7 @@ specifiers:
   '@graphql-codegen/cli': 2.16.2
   '@graphql-codegen/typescript-document-nodes': 2.3.11
   '@graphql-codegen/typescript-operations': 2.5.11
-  '@iconify-json/carbon': 1.1.11
+  '@iconify-json/carbon': 1.1.12
   '@types/lodash': 4.14.191
   '@types/node': 18.11.18
   '@types/signals': 1.0.1
@@ -69,7 +69,7 @@ dependencies:
 
 devDependencies:
   '@antfu/eslint-config': 0.34.0_iukboom6ndih5an6iafl45j2fe
-  '@iconify-json/carbon': 1.1.11
+  '@iconify-json/carbon': 1.1.12
   '@types/lodash': 4.14.191
   '@types/node': 18.11.18
   '@types/signals': 1.0.1
@@ -1548,8 +1548,8 @@ packages:
   /@iarna/toml/2.2.5:
     resolution: {integrity: sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==}
 
-  /@iconify-json/carbon/1.1.11:
-    resolution: {integrity: sha512-IHkHSNmTM6q6b8DuKSzd+AEMYPZywSxcb+37kZU7ywtcwsGen3aVEvWFykopIWjjwj3xdZ/5UdwJRqhZDQMlNg==}
+  /@iconify-json/carbon/1.1.12:
+    resolution: {integrity: sha512-P2T+Ob/ylTDYALcYWI5cTmfDFdwQJno2KN5yZnJYn9UaccSk687axROtHJrvfll/UncZlzP2s4rIRJUWoJ51mA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
