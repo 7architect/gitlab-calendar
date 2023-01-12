@@ -36,7 +36,7 @@ specifiers:
   unplugin-auto-import: 0.12.1
   unplugin-vue-components: 0.22.12
   vite: 3.2.5
-  vite-plugin-graphql-codegen: 2.3.1
+  vite-plugin-graphql-codegen: 3.0.1
   vite-plugin-pages: 0.28.0
   vitest: 0.27.1
   vue: 3.2.45
@@ -85,7 +85,7 @@ devDependencies:
   unplugin-auto-import: 0.12.1_@vueuse+core@9.10.0
   unplugin-vue-components: 0.22.12_vue@3.2.45
   vite: 3.2.5_@types+node@18.11.18
-  vite-plugin-graphql-codegen: 2.3.1_t4nl3pxfslpaducstzhcnxx5pi
+  vite-plugin-graphql-codegen: 3.0.1_t4nl3pxfslpaducstzhcnxx5pi
   vite-plugin-pages: 0.28.0_vite@3.2.5
   vitest: 0.27.1_jsdom@20.0.3
   vue-tsc: 1.0.24_typescript@4.9.4
@@ -7602,12 +7602,12 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-graphql-codegen/2.3.1_t4nl3pxfslpaducstzhcnxx5pi:
-    resolution: {integrity: sha512-SybLQaS+7dKTtHlvDaogemCMuDulziaS72BQO3cwzjUOtO+7uqkfuwgfMg+BSLJjol4oxP38iOQLKw6zSpNhtQ==}
+  /vite-plugin-graphql-codegen/3.0.1_t4nl3pxfslpaducstzhcnxx5pi:
+    resolution: {integrity: sha512-d66lVv7Q70b9Uak88zuCS4S4cvCRy423oHATVGYGFrRuA3yfgmqv0h81k1lW0dMAD2MbYOLLjzy3zaWPuV2L2A==}
     peerDependencies:
       '@graphql-codegen/cli': ^1.0.0 || ^2.0.0
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-      vite: ^2.7.0 || ^3.0.0
+      vite: ^2.7.0 || ^3.0.0 || ^4.0.0
     dependencies:
       '@graphql-codegen/cli': 2.16.3_xcqthgbenw3hhig2jxkpzsllxu
       graphql: 16.6.0
