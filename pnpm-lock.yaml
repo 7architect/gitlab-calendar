@@ -13,7 +13,7 @@ specifiers:
   '@types/signals': 1.0.1
   '@unocss/reset': 0.49.4
   '@vitejs/plugin-vue': 3.2.0
-  '@vue/apollo-composable': 4.0.0-beta.1
+  '@vue/apollo-composable': 4.0.0-beta.2
   '@vue/test-utils': 2.2.10
   '@vueuse/core': 9.12.0
   ant-design-vue: 3.2.15
@@ -50,7 +50,7 @@ dependencies:
   '@graphql-codegen/cli': 2.16.5_2cxwdmlcgvjm3o6mp5puf55z24
   '@graphql-codegen/typescript-document-nodes': 2.3.13_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.13_graphql@16.6.0
-  '@vue/apollo-composable': 4.0.0-beta.1_t2ocjvquvivz4lgdfnrbncwsve
+  '@vue/apollo-composable': 4.0.0-beta.2_t2ocjvquvivz4lgdfnrbncwsve
   '@vueuse/core': 9.12.0_vue@3.2.47
   ant-design-vue: 3.2.15_vue@3.2.47
   apollo3-cache-persist: 0.14.1_@apollo+client@3.7.6
@@ -2219,8 +2219,8 @@ packages:
       '@volar/vue-language-core': 1.0.24
     dev: true
 
-  /@vue/apollo-composable/4.0.0-beta.1_t2ocjvquvivz4lgdfnrbncwsve:
-    resolution: {integrity: sha512-WjyePUFYft7dZMNrO63DuP5bsl1AO1SKhfy688r2HXlyrCQAxvfRXOiPqnPzhmRn7kyWTKfrwwhkFJfnSq7vyA==}
+  /@vue/apollo-composable/4.0.0-beta.2_t2ocjvquvivz4lgdfnrbncwsve:
+    resolution: {integrity: sha512-SGZ1uklEldjG9UTMQnHyr9N4+C4D6hZXn3LDkDtpMVLAQksh30sqapSOFkEowOBVWyc/7f/JiCGADOhvxCWRxw==}
     peerDependencies:
       '@apollo/client': ^3.4.13
       '@vue/composition-api': ^1.0.0
