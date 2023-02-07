@@ -37,7 +37,7 @@
     "@antfu/eslint-config": "0.35.1",
     "@iconify-json/carbon": "1.1.14",
     "@types/lodash": "4.14.191",
-    "@types/node": "18.11.19",
+    "@types/node": "18.13.0",
     "@types/signals": "1.0.1",
     "@unocss/reset": "0.49.4",
     "@vitejs/plugin-vue": "3.2.0",
