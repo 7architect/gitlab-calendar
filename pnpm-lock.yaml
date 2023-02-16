@@ -33,7 +33,7 @@ specifiers:
   taze: 0.8.5
   typescript: 4.9.5
   unocss: 0.49.5
-  unplugin-auto-import: 0.14.2
+  unplugin-auto-import: 0.14.3
   unplugin-vue-components: 0.23.0
   vite: 3.2.5
   vite-plugin-graphql-codegen: 2.3.1
@@ -82,7 +82,7 @@ devDependencies:
   taze: 0.8.5
   typescript: 4.9.5
   unocss: 0.49.5_vite@3.2.5
-  unplugin-auto-import: 0.14.2_@vueuse+core@9.12.0
+  unplugin-auto-import: 0.14.3_@vueuse+core@9.12.0
   unplugin-vue-components: 0.23.0_vue@3.2.47
   vite: 3.2.5_@types+node@18.13.0
   vite-plugin-graphql-codegen: 2.3.1_hajsr6av2knmvqwkumegsibaz4
@@ -8013,8 +8013,8 @@ packages:
       - vite
     dev: true
 
-  /unplugin-auto-import/0.14.2_@vueuse+core@9.12.0:
-    resolution: {integrity: sha512-6DptcCD+bKlxwK0yS4ehleZTvtG4Xl9k/XxhKWxc9ii2uE28HvcA3KbYpoHAzTlHDXRBrtcCAohR8vtIRB5bfg==}
+  /unplugin-auto-import/0.14.3_@vueuse+core@9.12.0:
+    resolution: {integrity: sha512-6eCHLnsOPwLjNZHQkb95S5jbTWW2JH/jKiQUzTeWJAb8XFpDFZPEhxDeIDAr7HOF76Nz6EGhKF8PQduzygdICg==}
     engines: {node: '>=14'}
     peerDependencies:
       '@vueuse/core': '*'
