@@ -26,7 +26,7 @@ specifiers:
   lodash.debounce: 4.0.8
   lodash.merge: 4.6.2
   logrocket: 3.0.1
-  pinia: 2.0.30
+  pinia: 2.0.31
   pinia-plugin-persistedstate: 2.4.0
   pnpm: 7.27.1
   signals: 1.0.0
@@ -60,8 +60,8 @@ dependencies:
   lodash.debounce: 4.0.8
   lodash.merge: 4.6.2
   logrocket: 3.0.1
-  pinia: 2.0.30_hmuptsblhheur2tugfgucj7gc4
-  pinia-plugin-persistedstate: 2.4.0_pinia@2.0.30
+  pinia: 2.0.31_hmuptsblhheur2tugfgucj7gc4
+  pinia-plugin-persistedstate: 2.4.0_pinia@2.0.31
   signals: 1.0.0
   vue: 3.2.47
   vue-router: 4.1.6_vue@3.2.47
@@ -2327,6 +2327,10 @@ packages:
 
   /@vue/devtools-api/6.4.5:
     resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
+    dev: false
+
+  /@vue/devtools-api/6.5.0:
+    resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
     dev: false
 
   /@vue/reactivity-transform/3.2.47:
@@ -6572,7 +6576,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /pinia-plugin-persistedstate/2.4.0_pinia@2.0.30:
+  /pinia-plugin-persistedstate/2.4.0_pinia@2.0.31:
     resolution: {integrity: sha512-bQcpv47jk3ISl+InuJWsFaS/K7pRZ97kfoD2WCf/suhnlLy48k3BnFM2tI6YZ1xMsDaPv4yOsaPuPAUuSmEO2Q==}
     peerDependencies:
       pinia: ^2.0.0
@@ -6580,11 +6584,11 @@ packages:
       pinia:
         optional: true
     dependencies:
-      pinia: 2.0.30_hmuptsblhheur2tugfgucj7gc4
+      pinia: 2.0.31_hmuptsblhheur2tugfgucj7gc4
     dev: false
 
-  /pinia/2.0.30_hmuptsblhheur2tugfgucj7gc4:
-    resolution: {integrity: sha512-q6DUmxWwe/mQgg+55QQjykpKC+aGeGdaJV3niminl19V08dE+LRTvSEuqi6/NLSGCKHI49KGL6tMNEOssFiMyA==}
+  /pinia/2.0.31_hmuptsblhheur2tugfgucj7gc4:
+    resolution: {integrity: sha512-6OOKZGX79jm3q0xAu+X/PaRjfyOcFnPXcHFAA8HHa+wbJeSi5xc/nYqO8Ff7XLvwV8mKGYXcUfZUHbqUmw6P0w==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
@@ -6595,7 +6599,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@vue/devtools-api': 6.4.5
+      '@vue/devtools-api': 6.5.0
       typescript: 4.9.5
       vue: 3.2.47
       vue-demi: 0.13.6_vue@3.2.47
