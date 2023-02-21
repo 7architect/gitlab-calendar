@@ -16,7 +16,7 @@
     "@graphql-codegen/cli": "2.16.5",
     "@graphql-codegen/typescript-document-nodes": "2.3.13",
     "@graphql-codegen/typescript-operations": "2.5.13",
-    "@vue/apollo-composable": "4.0.0-beta.2",
+    "@vue/apollo-composable": "4.0.0-beta.3",
     "@vueuse/core": "9.13.0",
     "ant-design-vue": "3.2.15",
     "apollo3-cache-persist": "0.14.1",
