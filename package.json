@@ -47,7 +47,7 @@
     "pnpm": "7.28.0",
     "taze": "0.8.5",
     "typescript": "4.9.5",
-    "unocss": "0.50.1",
+    "unocss": "0.50.2",
     "unplugin-auto-import": "0.15.0",
     "unplugin-vue-components": "0.24.0",
     "vite": "3.2.5",
