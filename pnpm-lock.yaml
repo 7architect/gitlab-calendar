@@ -14,7 +14,7 @@ specifiers:
   '@unocss/reset': 0.50.4
   '@vitejs/plugin-vue': 3.2.0
   '@vue/apollo-composable': 4.0.0-beta.4
-  '@vue/test-utils': 2.3.0
+  '@vue/test-utils': 2.3.1
   '@vueuse/core': 9.13.0
   ant-design-vue: 3.2.15
   apollo3-cache-persist: 0.14.1
@@ -75,7 +75,7 @@ devDependencies:
   '@types/signals': 1.0.1
   '@unocss/reset': 0.50.4
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.47
-  '@vue/test-utils': 2.3.0_vue@3.2.47
+  '@vue/test-utils': 2.3.1_vue@3.2.47
   eslint: 8.35.0
   jsdom: 20.0.3
   pnpm: 7.29.1
@@ -2296,8 +2296,8 @@ packages:
   /@vue/shared/3.2.47:
     resolution: {integrity: sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==}
 
-  /@vue/test-utils/2.3.0_vue@3.2.47:
-    resolution: {integrity: sha512-S8/9Z+B4VSsTUNtZtzS7J1TfxJbf10n+gcH9X8cASbG0Tp7qD6vqs/sUNlmpzk6i7+pP00ptauJp9rygyW89Ww==}
+  /@vue/test-utils/2.3.1_vue@3.2.47:
+    resolution: {integrity: sha512-tRtHRPEETQSUrqXgAewNZHm5iypxDFxwenfdcvMRm1kbGo4bcqHb1XHHlsaIjoDbLkuE2NYiF8vBQDNYrzlrSA==}
     peerDependencies:
       vue: ^3.0.1
     dependencies:
