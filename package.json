@@ -20,7 +20,7 @@
     "@vueuse/core": "9.13.0",
     "ant-design-vue": "3.2.16",
     "apollo3-cache-persist": "0.14.1",
-    "dayjs": "1.11.7",
+    "dayjs": "1.11.13",
     "graphql": "16.6.0",
     "graphql-tag": "2.12.6",
     "lodash.debounce": "4.0.8",
